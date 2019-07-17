@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "576348243003",
+    "firebase_url": "https://skilex-person.firebaseio.com",
+    "project_id": "skilex-person",
+    "storage_bucket": "skilex-person.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576348243003:android:1e954f310662a39a",
+        "android_client_info": {
+          "package_name": "com.skilex.skilexserviceperson"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576348243003-81ii3kc3u0d6uind7fs7k03isdgbfl4j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skilex.skilexserviceperson",
+            "certificate_hash": "fd0b8651507b56d30d1f4bd8a3dd17420b36f205"
+          }
+        },
+        {
+          "client_id": "576348243003-lpfhs5g78cvua4kuq40q51l5kev9utut.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skilex.skilexserviceperson",
+            "certificate_hash": "0359e7dc48fefeb14bc7b8d941c6ca08301ad167"
+          }
+        },
+        {
+          "client_id": "576348243003-pcphedn7315t8cfrg529jkas73gj003d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhkisGSNkn_QS3yOpS1QnN_Bhzs6_aiQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576348243003-pcphedn7315t8cfrg529jkas73gj003d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
