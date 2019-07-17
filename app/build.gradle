@@ -64,7 +64,6 @@ android {
         exclude 'META-INF/ASL2.0'
     }
 
-//            outputFileName = file("$project.buildDir/apk/Heylaapp.apk")
     android.applicationVariants.all { variant ->
 
         variant.outputs.all { output ->
