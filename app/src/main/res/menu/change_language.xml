@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/change_lang"
+        android:enabled="true"
+        android:icon="@drawable/ic_language"
+        android:title=""
+        app:labelVisibilityMode="selected"
+        app:showAsAction="ifRoom|withText" />
+
+</menu>

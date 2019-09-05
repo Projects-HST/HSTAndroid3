@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ஸ்கில்எக்ஸ்</string>
+
+    <string name="empty" />
+    <string name="error_occurred">Failed to connect to the server. Please try again.</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!--Dialog Fragment-->
+    <string name="alert_button_ok">OK</string>
+    <string name="alert_button_cancel">Cancel</string>
+
+    <!--Side menu-->
+    <string name="text_tamil" translatable="false">தமிழ்</string>
+    <string name="text_english" translatable="false">English</string>
+
+    <string-array name="language_selection">
+        <item>Select</item>
+        <item>தமிழ்</item>
+        <item>English</item>
+    </string-array>
+
+    <!--General-->
+    <string name="confirm">Confirm</string>
+    <string name="progress_loading">Loading&#8230;</string>
+    <string name="error_entry">Entry Invalid</string>
+    <string name="error_mail">Enter valid mail ID</string>
+    <string name="error_number">Enter valid phone number</string>
+    <string name="empty_entry">Field cannot be empty</string>
+
+    <!--Login-->
+    <string name="welcome">Welcome!</string>
+    <string name="enter_text">Enter Mobile Number</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="mobile_number">Mobile Number</string>
+
+    <!--OTP Page-->
+    <string name="verificationcode">Verification Code</string>
+    <string name="didntrecievecode">Didn\'t receive the code?\t</string>
+    <string name="entercodetxt">We have sent you 4 digit verification code to\nyour mobile number</string>
+    <string name="resend">Resend now</string>
+    <string name="resend_otp">Resend OTP?</string>
+    <string name="changenumber">Change number</string>
+    <string name="otp_action_bar">OTP</string>
+
+    <!--Landing page-->
+    <string name="home">Home</string>
+    <string name="service_expert">Service Expert</string>
+    <string name="profile_title">Profile</string>
+    <string name="dashboard">Dashboard</string>
+
+    <!--Home page-->
+    <string name="assigned">Assigned Service</string>
+    <string name="ongoing">On going Service</string>
+    <string name="service_history">Service History</string>
+
+    <!--Profile Settings Page-->
+    <string name="about">About</string>
+    <string name="share">Share app</string>
+    <string name="logout">Logout</string>
+    <string name="update_service">Update Services</string>
+    <string name="bank_details">Edit Bank Details</string>
+    <string name="company_details">Company Details</string>
+
+    <!--Requested service list-->
+    <string name="category">Category</string>
+    <string name="subcategory">Sub Category</string>
+    <string name="date">Select Date</string>
+    <string name="time">Select Time Slot</string>
+    <string name="location">Select Service Location</string>
+    <string name="cancel">Cancel Service</string>
+    <string name="accept">Accept Service</string>
+    <string name="assign">Assign</string>
+    <string name="cancel_service_noadvance_alert1">Are you sure you want to cancel your service?</string>
+    <string name="alert_button_yes">Yes</string>
+    <string name="alert_button_no">No</string>
+    <string name="reason">Reason</string>
+    <string name="comment">Comment</string>
+
+    <!--Assigned Services-->
+    <string name="assigned_title">Assigned Services</string>
+
+    <!--Assigned service-->
+    <string name="customer_name">Customer Name</string>
+    <string name="customer_name_text">Customer Name Text</string>
+    <string name="customer_number">Customer Number</string>
+    <string name="customer_number_text">Customer Number Text</string>
+    <string name="service_time">Service Time</string>
+    <string name="service_time_text">Service Time Text</string>
+    <string name="service_cost">Estimated Cost</string>
+    <string name="service_cost_text">Estimated Cost Text</string>
+    <string name="initiate">Initiate</string>
+
+    <!--Cancel service-->
+    <string name="cancel_title">Cancel Service</string>
+    <string name="cancel_details">Cancellation Details</string>
+    <string name="reason_hint">Due to non availability</string>
+    <string name="reason_comments">Comments(if any)</string>
+    <string name="reason_comments_hint">I will book the service once i am available</string>
+    <string name="service_number">Service Number</string>
+    <string name="service_number_hint">Service Number Hint</string>
+    <string name="cancelled_by">Cancelled By</string>
+    <string name="cancelled_by_hint">Cancelled By Hint</string>
+
+    <!--OnGoing Services-->
+    <string name="ongoing_title">Ongoing Services</string>
+
+    <!--Completed Services-->
+    <string name="completed_title">Completed Services</string>
+
+    <!--Service process-->
+    <string name="next">Next</string>
+    <string name="sp_category">Electrical</string>
+    <string name="sp_sub_category">Generator</string>
+    <string name="sp_customer_name">Customer Name</string>
+    <string name="sp_customer_name_hint">Customer Name</string>
+    <string name="sp_service_date">Service Date</string>
+    <string name="sp_service_date_hint">Service Date</string>
+    <string name="sp_service_time">Service Time</string>
+    <string name="sp_service_time_hint">Service Time</string>
+    <string name="sp_service_provider">Service Provider</string>
+    <string name="sp_service_provider_hint">Service Provider</string>
+    <string name="sp_enter_otp">Enter OTP to start the work</string>
+    <string name="sp_enter_otp_hint">Enter OTP</string>
+    <string name="request_otp">Request OTP</string>
+    <string name="start">Start</string>
+    <string name="start_date_time">Date and time at which the service started:</string>
+    <string name="additional_services">Additional Services</string>
+    <string name="update">Update</string>
+    <string name="submit">Submit</string>
+    <string name="material_used">Material used</string>
+    <string name="attach_bill">Attach bill</string>
+
+</resources>
