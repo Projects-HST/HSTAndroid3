@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.skilex.skilexserviceperson.R;
+import com.skilex.skilexserviceperson.activity.LandingPageActivity;
 import com.skilex.skilexserviceperson.activity.fragmentmodule.assigned.AssignedServiceDetailActivity;
 import com.skilex.skilexserviceperson.bean.support.AssignedService;
 import com.skilex.skilexserviceperson.bean.support.OngoingService;
@@ -459,6 +460,8 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
 
                 } else if (res.equalsIgnoreCase("submit")) {
                     Toast.makeText(getApplicationContext(), "Service completed!", Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(getApplicationContext(), LandingPageActivity.class);
+                    startActivity(i);
                     finish();
                 }
 

@@ -2,6 +2,7 @@ package com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,6 +10,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.gson.Gson;
 import com.skilex.skilexserviceperson.R;
 import com.skilex.skilexserviceperson.bean.support.OngoingService;
@@ -30,7 +36,7 @@ import static android.util.Log.d;
 
 public class InitiatedServiceActivity extends BaseActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
 
-    private static final String TAG = OngoingServiceDetailActivity.class.getName();
+    private static final String TAG = InitiatedServiceActivity.class.getName();
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
     OngoingService ongoingService;
@@ -38,6 +44,13 @@ public class InitiatedServiceActivity extends BaseActivity implements IServiceLi
     private ImageView imgCall;
     private Button btnNext;
     String res = "";
+    private MapView mapView;
+    private GoogleMap mMap;
+    private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
+
+    LatLng livLoc;
+    Marker currentLocationMarker;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,7 +73,6 @@ public class InitiatedServiceActivity extends BaseActivity implements IServiceLi
         btnNext.setOnClickListener(this);
 
         loadServiceDetails();
-
     }
 
     void loadServiceDetails() {

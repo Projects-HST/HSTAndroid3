@@ -132,6 +132,13 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
 
+        <activity
+            android:name=".activity.fragmentmodule.completed.CompletedServiceDetailActivity"
+            android:label="@string/completed_title"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+
     </application>
 
 </manifest>

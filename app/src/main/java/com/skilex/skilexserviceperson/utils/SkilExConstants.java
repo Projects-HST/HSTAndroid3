@@ -81,4 +81,9 @@ public class SkilExConstants {
     public static final String API_CANCELLED_SERVICE_LIST = "list_canceled_services/";
 
 
+    //Completed service
+    public static final String API_COMPLETED_SERVICE_LIST = "list_completed_services/";
+    public static final String API_COMPLETED_SERVICE_DETAIL = "detail_completed_services/";
+
+
 }

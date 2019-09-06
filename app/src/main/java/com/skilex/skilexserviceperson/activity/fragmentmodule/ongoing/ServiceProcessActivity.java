@@ -1,6 +1,7 @@
 package com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.MotionEvent;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.skilex.skilexserviceperson.R;
+import com.skilex.skilexserviceperson.activity.LandingPageActivity;
 import com.skilex.skilexserviceperson.bean.support.OngoingService;
 import com.skilex.skilexserviceperson.helper.AlertDialogHelper;
 import com.skilex.skilexserviceperson.helper.ProgressDialogHelper;
@@ -207,6 +209,8 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
 
                 } else if (res.equalsIgnoreCase("start")) {
                     Toast.makeText(getApplicationContext(), "Service has been started!", Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(getApplicationContext(), LandingPageActivity.class);
+                    startActivity(i);
                     finish();
                 }
 

@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import static android.util.Log.d;
 
 public class AssignedServicesActivity extends BaseActivity implements IServiceListener, DialogClickListener,
-        AdapterView.OnItemClickListener{
+        AdapterView.OnItemClickListener {
 
     private static final String TAG = AssignedServicesActivity.class.getName();
 

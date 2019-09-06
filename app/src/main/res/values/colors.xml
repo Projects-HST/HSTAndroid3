@@ -23,4 +23,6 @@
     <color name="light_blue">#4CB7BF</color>
     <color name="light_orange_1">#F0515D</color>
     <color name="Logout">#ED1C24</color>
+    <color name="green">#4CB748</color>
+    <color name="dark_grey">#939394</color>
 </resources>
