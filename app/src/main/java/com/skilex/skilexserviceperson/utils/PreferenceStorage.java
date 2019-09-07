@@ -76,7 +76,7 @@ public class PreferenceStorage {
     }
     /*End*/
 
-    /*Login type*/
+    /*Active status*/
     public static void saveActiveStatus(Context context, String loginType) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
@@ -93,4 +93,95 @@ public class PreferenceStorage {
         return loginType;
     }
     /*End*/
+
+    /*Full name*/
+    public static void saveFullName(Context context, String fullName) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SkilExConstants.PREF_FULL_NAME, fullName);
+        editor.apply();
+    }
+
+    public static String getFullName(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String fullName;
+        fullName = sharedPreferences.getString(SkilExConstants.PREF_FULL_NAME, "");
+        return fullName;
+    }
+    /*End*/
+
+    /*Gender*/
+    public static void saveGender(Context context, String gender) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SkilExConstants.PREF_GENDER, gender);
+        editor.apply();
+    }
+
+    public static String getGender(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String gender;
+        gender = sharedPreferences.getString(SkilExConstants.PREF_GENDER, "");
+        return gender;
+    }
+    /*End*/
+
+    /*Email*/
+    public static void saveEmail(Context context, String email) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SkilExConstants.PREF_EMAIL, email);
+        editor.apply();
+    }
+
+    public static String getEmail(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String email;
+        email = sharedPreferences.getString(SkilExConstants.PREF_EMAIL, "");
+        return email;
+    }
+    /*End*/
+
+    /*Profile picture*/
+    public static void saveProfilePicture(Context context, String profilePicture) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SkilExConstants.PREF_PROFILE_PICTURE, profilePicture);
+        editor.apply();
+    }
+
+    public static String getProfilePicture(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String profilePicture;
+        profilePicture = sharedPreferences.getString(SkilExConstants.PREF_PROFILE_PICTURE, "");
+        return profilePicture;
+    }
+    /*End*/
+
+    /*Address*/
+    public static void saveAddress(Context context, String address) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SkilExConstants.PREF_ADDRESS, address);
+        editor.apply();
+    }
+
+    public static String getAddress(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String address;
+        address = sharedPreferences.getString(SkilExConstants.PREF_ADDRESS, "");
+        return address;
+    }
+    /*End*/
+
 }

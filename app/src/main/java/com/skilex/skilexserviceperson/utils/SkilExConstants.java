@@ -36,8 +36,10 @@ public class SkilExConstants {
 
     //NUMBER VERIFICATION URL FOR LOGIN
     public static final String MOBILE_VERIFICATION = "mobile_check/";
+
     //Login
     public static String LOGIN = "login/";
+
     // Login Parameters
     public static String PHONE_NUMBER = "phone_no";
     public static String OTP = "otp";
@@ -63,14 +65,11 @@ public class SkilExConstants {
     public static final String API_ONGOING_SERVICE_COMPLETE = "complete_services/";
     public static final String UPLOAD_BILL_DOCUMENT = "upload_service_bills/";
 
-
     //Initiate service
     public static final String API_INITIATE_SERVICE = "initiate_services/";
-
     public static String SERVICE_ORDER_ID = "service_order_id";
     public static String SERVICE_OTP = "service_otp";
     public static String KEY_MATERIAL_NOTES = "material_notes";
-
     public static final String KEY_USER_TYPE = "user_type";
 
     //Cancel service
@@ -80,10 +79,18 @@ public class SkilExConstants {
     public static String CANCEL_COMMENTS = "comments";
     public static final String API_CANCELLED_SERVICE_LIST = "list_canceled_services/";
 
-
     //Completed service
     public static final String API_COMPLETED_SERVICE_LIST = "list_completed_services/";
     public static final String API_COMPLETED_SERVICE_DETAIL = "detail_completed_services/";
+
+    //Login data
+    public static final String PREF_FULL_NAME = "full_name";
+    public static final String PREF_EMAIL = "email";
+    public static final String PREF_GENDER = "gender";
+    public static final String PREF_PROFILE_PICTURE = "profile_picture";
+    public static final String PREF_ADDRESS = "address";
+
+
 
 
 }

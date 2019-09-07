@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.skilex.skilexserviceperson.R;
 import com.skilex.skilexserviceperson.activity.LandingPageActivity;
 import com.skilex.skilexserviceperson.customview.CustomOtpEditText;
@@ -26,6 +27,7 @@ import com.skilex.skilexserviceperson.utils.CommonUtils;
 import com.skilex.skilexserviceperson.utils.PreferenceStorage;
 import com.skilex.skilexserviceperson.utils.SkilExConstants;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -171,6 +173,28 @@ public class OTPVerificationActivity extends BaseActivity implements View.OnClic
         progressDialogHelper.hideProgressDialog();
         if (validateResponse(response)) {
             try {
+                JSONObject userData = response.getJSONObject("userData");
+
+                String userMasterId = userData.getString("user_master_id");
+                String fullName = userData.getString("full_name");
+                String phoneNo = userData.getString("phone_no");
+                String email = userData.getString("email");
+                String gender = userData.getString("gender");
+                String userType = userData.getString("user_type");
+                String profilePic = userData.getString("profile_pic");
+                String address = userData.getString("address");
+
+                /*PreferenceStorage.saveUserMasterId(this, userMasterId);
+                PreferenceStorage.saveFullName(this, fullName);
+                PreferenceStorage.saveUserMasterId(this, userMasterId);
+                PreferenceStorage.saveUserMasterId(this, userMasterId);
+                PreferenceStorage.saveUserMasterId(this, userMasterId);
+                PreferenceStorage.saveUserMasterId(this, userMasterId);
+                PreferenceStorage.saveUserMasterId(this, userMasterId);
+                PreferenceStorage.saveUserMasterId(this, userMasterId);*/
+
+
+
                 Intent i = new Intent(OTPVerificationActivity.this, LandingPageActivity.class);
                 startActivity(i);
                 finish();
