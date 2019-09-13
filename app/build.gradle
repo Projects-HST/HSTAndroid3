@@ -117,7 +117,7 @@ dependencies {
     implementation files('libs/httpclient-4.3.6.jar')
     implementation files('libs/httpcore-4.3.3.jar')
     implementation files('libs/httpmime-4.3.6.jar')
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.makeramen:roundedimageview:2.1.0'
 
     implementation 'com.google.firebase:firebase-messaging:11.0.4'

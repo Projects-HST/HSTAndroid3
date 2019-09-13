@@ -8,6 +8,7 @@ public class SkilExConstants {
 
     //BUILD URL
     public static final String BUILD_URL = BASE_URL + "development/apisperson/";
+//    public static final String BUILD_URL = BASE_URL + "uat/apisperson/";
 
     // Alert Dialog Constants
     public static String ALERT_DIALOG_TITLE = "alertDialogTitle";
@@ -89,6 +90,14 @@ public class SkilExConstants {
     public static final String PREF_GENDER = "gender";
     public static final String PREF_PROFILE_PICTURE = "profile_picture";
     public static final String PREF_ADDRESS = "address";
+//    public static final String PREF_ADDRESS = "address";
+//    public static final String PREF_ADDRESS = "address";
+//    public static final String PREF_ADDRESS = "address";
+
+    //PROFILE UPDATE URL
+    public static final String PROFILE_INFO = "user_info/";
+    public static final String UPDATE_PROFILE = "profile_update/";
+    public static final String UPLOAD_IMAGE = "profile_pic_upload/";
 
 
 

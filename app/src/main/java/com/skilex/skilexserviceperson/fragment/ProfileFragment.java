@@ -1,15 +1,14 @@
 package com.skilex.skilexserviceperson.fragment;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,16 +16,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.skilex.skilexserviceperson.activity.ProfileActivity;
 import com.skilex.skilexserviceperson.R;
+import com.skilex.skilexserviceperson.activity.AboutUsActivity;
 import com.skilex.skilexserviceperson.activity.loginmodule.SplashScreenActivity;
 import com.skilex.skilexserviceperson.customview.CircleImageView;
+import com.skilex.skilexserviceperson.helper.AlertDialogHelper;
 import com.skilex.skilexserviceperson.helper.ProgressDialogHelper;
 import com.skilex.skilexserviceperson.interfaces.DialogClickListener;
 import com.skilex.skilexserviceperson.languagesupport.LocaleManager;
 import com.skilex.skilexserviceperson.servicehelpers.ServiceHelper;
 import com.skilex.skilexserviceperson.serviceinterfaces.IServiceListener;
+import com.skilex.skilexserviceperson.utils.PreferenceStorage;
+import com.skilex.skilexserviceperson.utils.SkilExConstants;
+import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ProfileFragment extends Fragment implements IServiceListener, DialogClickListener, View.OnClickListener {
@@ -36,7 +43,8 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
     private ProgressDialogHelper progressDialogHelper;
     private View rootView;
     private CircleImageView profileImage;
-    private LinearLayout profile, about, services, bank, company, share, logout;
+    private LinearLayout profile, about, share, logout;
+    TextView userName, number, mail;
 
     public static ProfileFragment newInstance(int position) {
         ProfileFragment frag = new ProfileFragment();
@@ -57,10 +65,47 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_user_profile, container, false);
         getActivity().setTitle("Profile");
+
+        serviceHelper = new ServiceHelper(rootView.getContext());
+        serviceHelper.setServiceListener(this);
+        progressDialogHelper = new ProgressDialogHelper(rootView.getContext());
+
+        profileImage = rootView.findViewById(R.id.user_profile_img);
+
+        profile = rootView.findViewById(R.id.layout_profile);
+        profile.setOnClickListener(this);
+        about = rootView.findViewById(R.id.layout_about);
+        about.setOnClickListener(this);
+        share = rootView.findViewById(R.id.layout_share);
+        share.setOnClickListener(this);
+
         logout = rootView.findViewById(R.id.layout_logout);
         logout.setOnClickListener(this);
 
+        userName = rootView.findViewById(R.id.user_name);
+        number = rootView.findViewById(R.id.user_phone_number);
+        mail = rootView.findViewById(R.id.user_mail);
+
+        getUserInfo();
+
         return rootView;
+    }
+
+    private void getUserInfo() {
+        String id = "";
+        if (!PreferenceStorage.getUserMasterId(rootView.getContext()).isEmpty()) {
+            id = PreferenceStorage.getUserMasterId(rootView.getContext());
+        }
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put(SkilExConstants.USER_MASTER_ID, id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+        String url = SkilExConstants.BUILD_URL + SkilExConstants.PROFILE_INFO;
+        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
     @Override
@@ -102,10 +147,29 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
 
     @Override
     public void onClick(View v) {
+        if (v == profile) {
+
+            Intent homeIntent = new Intent(getActivity(), ProfileActivity.class);
+            startActivity(homeIntent);
+
+        }
+        if (v == about) {
+            Intent homeIntent = new Intent(getActivity(), AboutUsActivity.class);
+            startActivity(homeIntent);
+        }
+        if (v == share) {
+//            Intent i = new Intent(android.content.Intent.ACTION_SEND);
+//            i.setType("text/plain");
+//            i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Share");
+//            i.putExtra(android.content.Intent.EXTRA_TEXT, "Hey! Get Heyla app and win some exciting rewards. https://goo.gl/JTmdEX");
+//            startActivity(Intent.createChooser(i, "Share via"));
+
+        }
         if (v == logout) {
             doLogout();
         }
     }
+
 
     @Override
     public void onAlertPositiveClicked(int tag) {
@@ -127,13 +191,56 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
         getActivity().finish();
     }
 
+
+    private boolean validateResponse(JSONObject response) {
+        boolean signInSuccess = false;
+        if ((response != null)) {
+            try {
+                String status = response.getString("status");
+                String msg = response.getString(SkilExConstants.PARAM_MESSAGE);
+                Log.d(TAG, "status val" + status + "msg" + msg);
+
+                if ((status != null)) {
+                    if (((status.equalsIgnoreCase("activationError")) || (status.equalsIgnoreCase("alreadyRegistered")) ||
+                            (status.equalsIgnoreCase("notRegistered")) || (status.equalsIgnoreCase("error")))) {
+                        signInSuccess = false;
+                        Log.d(TAG, "Show error dialog");
+                        AlertDialogHelper.showSimpleAlertDialog(rootView.getContext(), msg);
+
+                    } else {
+                        signInSuccess = true;
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return signInSuccess;
+    }
+
     @Override
     public void onResponse(JSONObject response) {
+        progressDialogHelper.hideProgressDialog();
+        if (validateResponse(response)) {
+            try {
+                JSONObject data = response.getJSONObject("user_details");
+                String url = data.getString("profile_pic");
+                if (!url.isEmpty()) {
+                    Picasso.get().load(url).into(profileImage);
+                }
+                userName.setText(data.getString("full_name"));
+                number.setText(data.getString("phone_no"));
+                mail.setText(data.getString("email"));
 
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
     public void onError(String error) {
-
+        progressDialogHelper.hideProgressDialog();
+        AlertDialogHelper.showSimpleAlertDialog(rootView.getContext(), error);
     }
 }

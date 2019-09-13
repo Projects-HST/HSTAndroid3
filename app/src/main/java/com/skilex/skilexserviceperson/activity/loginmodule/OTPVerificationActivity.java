@@ -184,16 +184,14 @@ public class OTPVerificationActivity extends BaseActivity implements View.OnClic
                 String profilePic = userData.getString("profile_pic");
                 String address = userData.getString("address");
 
-                /*PreferenceStorage.saveUserMasterId(this, userMasterId);
+                PreferenceStorage.saveUserMasterId(this, userMasterId);
                 PreferenceStorage.saveFullName(this, fullName);
-                PreferenceStorage.saveUserMasterId(this, userMasterId);
-                PreferenceStorage.saveUserMasterId(this, userMasterId);
-                PreferenceStorage.saveUserMasterId(this, userMasterId);
-                PreferenceStorage.saveUserMasterId(this, userMasterId);
-                PreferenceStorage.saveUserMasterId(this, userMasterId);
-                PreferenceStorage.saveUserMasterId(this, userMasterId);*/
-
-
+                PreferenceStorage.saveMobileNo(this, phoneNo);
+                PreferenceStorage.saveEmail(this, email);
+                PreferenceStorage.saveGender(this, gender);
+                PreferenceStorage.saveLoginType(this, userType);
+                PreferenceStorage.saveProfilePicture(this, profilePic);
+                PreferenceStorage.saveAddress(this, address);
 
                 Intent i = new Intent(OTPVerificationActivity.this, LandingPageActivity.class);
                 startActivity(i);

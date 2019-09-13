@@ -25,8 +25,7 @@
     <!--End-->
 
     <!--Hardware Permission-->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <!--End-->
 
     <!--Phone State Permission-->
@@ -34,16 +33,16 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
     <!--End-->
 
     <application
         android:name=".app.AppController"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBarLogin">
 
@@ -134,6 +133,20 @@
 
         <activity
             android:name=".activity.fragmentmodule.completed.CompletedServiceDetailActivity"
+            android:label="@string/completed_title"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".activity.AboutUsActivity"
+            android:label="@string/completed_title"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".activity.ProfileActivity"
             android:label="@string/completed_title"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
