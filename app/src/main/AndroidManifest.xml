@@ -118,6 +118,13 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
+            android:name=".activity.fragmentmodule.ongoing.LocationNavigationActivity"
+            android:label="@string/ongoing_title"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
             android:name=".activity.fragmentmodule.ongoing.ServiceProcessActivity"
             android:label="@string/ongoing_title"
             android:screenOrientation="portrait"

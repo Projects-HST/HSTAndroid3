@@ -106,6 +106,7 @@ public class OnGoingServicesActivity extends BaseActivity implements IServiceLis
 
         if (checkServiceStatus.equalsIgnoreCase("Initiated")) {
             Intent intent = new Intent(this, InitiatedServiceActivity.class);
+//            Intent intent = new Intent(this, LocationNavigationActivity.class);
             intent.putExtra("serviceObj", service);
             startActivity(intent);
         } else {
