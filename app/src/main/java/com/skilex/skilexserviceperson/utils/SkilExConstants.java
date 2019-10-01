@@ -8,7 +8,8 @@ public class SkilExConstants {
 
     //BUILD URL
 //    public static final String BUILD_URL = BASE_URL + "development/apisperson/";
-    public static final String BUILD_URL = BASE_URL + "uat/apisperson/";
+//    public static final String BUILD_URL = BASE_URL + "uat/apisperson/";
+    public static final String BUILD_URL = BASE_URL + "apisperson/";
 
     // Alert Dialog Constants
     public static String ALERT_DIALOG_TITLE = "alertDialogTitle";
