@@ -1,9 +1,11 @@
 package com.skilex.skilexserviceperson.activity.loginmodule;
 
 import android.Manifest;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.credentials.HintRequest;
 import com.skilex.skilexserviceperson.R;
 import com.skilex.skilexserviceperson.helper.AlertDialogHelper;
 import com.skilex.skilexserviceperson.helper.ProgressDialogHelper;
@@ -59,6 +62,8 @@ public class LoginActivity extends BaseActivity implements DialogClickListener, 
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
 
+    private static final int CREDENTIAL_PICKER_REQUEST = 1;  // Set to an unused request code
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +92,18 @@ public class LoginActivity extends BaseActivity implements DialogClickListener, 
 //            showLangAlert();
 //        }
     }
+
+
+    /*// Construct a request for phone numbers and show the picker
+    private void requestHint() throws IntentSender.SendIntentException {
+        HintRequest hintRequest = new HintRequest.Builder()
+                .setPhoneNumberIdentifierSupported(true)
+                .build();
+        PendingIntent intent = Credentials.getClient(this).getHintPickerIntent(hintRequest);
+        startIntentSenderForResult(intent.getIntentSender(),
+                RESOLVE_HINT, null, 0, 0, 0);
+    }*/
+
 
     private void requestAllPermissions() {
 
@@ -139,7 +156,7 @@ public class LoginActivity extends BaseActivity implements DialogClickListener, 
                 } else {
                     AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection available");
                 }
-            } else if(v==lang){
+            } else if (v == lang) {
                 showLangAlert();
             }
         }
