@@ -301,6 +301,22 @@
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
+                <Button
+                    android:id="@+id/btn_hold_services"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_round_white"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:text="@string/hold"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
 
                 <Button
                     android:id="@+id/btn_submit"

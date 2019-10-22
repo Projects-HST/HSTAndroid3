@@ -7,9 +7,9 @@ public class SkilExConstants {
     private static final String BASE_URL = "https://skilex.in/";
 
     //BUILD URL
-//    public static final String BUILD_URL = BASE_URL + "development/apisperson/";
+    public static final String BUILD_URL = BASE_URL + "development/apisperson/";
 //    public static final String BUILD_URL = BASE_URL + "uat/apisperson/";
-    public static final String BUILD_URL = BASE_URL + "apisperson/";
+//    public static final String BUILD_URL = BASE_URL + "apisperson/";
 
     // Alert Dialog Constants
     public static String ALERT_DIALOG_TITLE = "alertDialogTitle";
@@ -51,6 +51,10 @@ public class SkilExConstants {
     public static String UNIQUE_NUMBER = "unique_number";
     public static String MOBILE_KEY = "mobile_key";
     public static String USER_STATUS = "user_stat";
+    public static String SERVICE_DATE = "service_date";
+
+    //SERVICE TIME SLOT URL
+    public static final String GET_TIME_SLOT = "view_time_slot/";
 
     //Requested services list
     public static final String API_ASSIGNED_SERVICE = "list_assigned_services/";
@@ -66,6 +70,10 @@ public class SkilExConstants {
     public static final String API_ONGOING_SERVICE_DETAIL_UPDATE = "update_ongoing_services/";
     public static final String API_ONGOING_SERVICE_COMPLETE = "complete_services/";
     public static final String UPLOAD_BILL_DOCUMENT = "upload_service_bills/";
+    public static final String API_ON_HOLD_SERVICE_UPDATE = "onhold_services/";
+    public static final String PARAM_RESUME_DATE = "resume_date";
+    public static final String PARAM_RESUME_TIME = "resume_timeslot";
+    public static final String PARAM_STATUS = "status";
 
     //Initiate service
     public static final String API_INITIATE_SERVICE = "initiate_services/";

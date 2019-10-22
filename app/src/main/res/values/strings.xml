@@ -132,6 +132,7 @@
     <string name="start_date_time">Date and time at which the service started:</string>
     <string name="additional_services">Additional Services</string>
     <string name="update">Update</string>
+    <string name="hold">Hold</string>
     <string name="submit">Submit</string>
     <string name="material_used">Material used</string>
     <string name="attach_bill">Attach bill</string>
