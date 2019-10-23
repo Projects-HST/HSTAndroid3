@@ -3,6 +3,7 @@
 
     <string name="empty" />
     <string name="error_occurred">Failed to connect to the server. Please try again.</string>
+    <string name="error_no_net">No internet access. Please check your connection and try again.</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -19,7 +20,7 @@
     <string name="text_english" translatable="false">English</string>
 
     <string-array name="language_selection">
-        <item>Select</item>
+        <item>தேர்ந்தெடுக்கவும்</item>
         <item>தமிழ்</item>
         <item>English</item>
     </string-array>
@@ -47,6 +48,9 @@
     <string name="resend_otp">Resend OTP?</string>
     <string name="changenumber">Change number</string>
     <string name="otp_action_bar">OTP</string>
+    <string name="otp_confirm_no">Confirm your mobile number: </string>
+    <string name="otp_proceed">Proceed</string>
+    <string name="otp_invalid">Invalid OTP</string>
 
     <!--Landing page-->
     <string name="home">Home</string>

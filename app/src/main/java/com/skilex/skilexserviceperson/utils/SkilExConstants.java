@@ -6,8 +6,16 @@ public class SkilExConstants {
     //    BASE URL
     private static final String BASE_URL = "https://skilex.in/";
 
+    //Development Mode
+    //delopment
+    public static final String JOINT_URL = "development/";
+    //uat
+//    public static final String JOINT_URL = "uat/";
+    //live
+//    public static final String JOINT_URL = "";
+
     //BUILD URL
-    public static final String BUILD_URL = BASE_URL + "development/apisperson/";
+    public static final String BUILD_URL = BASE_URL + JOINT_URL + "apisperson/";
 //    public static final String BUILD_URL = BASE_URL + "uat/apisperson/";
 //    public static final String BUILD_URL = BASE_URL + "apisperson/";
 
@@ -107,8 +115,6 @@ public class SkilExConstants {
     public static final String PROFILE_INFO = "user_info/";
     public static final String UPDATE_PROFILE = "profile_update/";
     public static final String UPLOAD_IMAGE = "profile_pic_upload/";
-
-
 
 
 }
