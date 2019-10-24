@@ -369,6 +369,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
     }
 
     private void updateServiceHoldStatus(String ResumeDate, String ResumeTime) {
+
         res = "hold";
         JSONObject jsonObject = new JSONObject();
         String id = "";
@@ -384,6 +385,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
             e.printStackTrace();
         }
 
+        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
         String url = SkilExConstants.BUILD_URL + SkilExConstants.API_ON_HOLD_SERVICE_UPDATE;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
@@ -1001,7 +1003,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
                     txtCustomerName.setText(getServiceData.getString("contact_person_name"));
                     txtServiceDate.setText(getServiceData.getString("order_date"));
                     txtServiceTime.setText(getServiceData.getString("from_time"));
-                    txtServiceProvider.setText(getServiceData.getString("service_provider"));
+                    txtServiceProvider.setText(getServiceData.getString("service_person"));
                     txtStartDateTime.setText(getServiceData.getString("start_datetime"));
                     edtMaterialUsed.setText(getServiceData.getString("material_notes"));
                 } else if (res.equalsIgnoreCase("update")) {
