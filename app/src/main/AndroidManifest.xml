@@ -147,14 +147,14 @@
 
         <activity
             android:name=".activity.AboutUsActivity"
-            android:label="@string/completed_title"
+            android:label="@string/about_us"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".activity.ProfileActivity"
-            android:label="@string/completed_title"
+            android:label="@string/profile_title"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />

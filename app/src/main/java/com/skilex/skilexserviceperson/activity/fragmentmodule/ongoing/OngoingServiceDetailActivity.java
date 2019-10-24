@@ -198,8 +198,10 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
         DatePicker dP = fromDatePickerDialog.getDatePicker();
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DAY_OF_MONTH, 2);
+        Calendar cal1 = Calendar.getInstance();
+        cal1.add(Calendar.DAY_OF_YEAR, 2);
         Date result = cal.getTime();
-        dP.setMinDate(System.currentTimeMillis() - 1000);
+        dP.setMinDate(cal.getTimeInMillis());
         dP.setMaxDate(result.getTime());
     }
 

@@ -158,11 +158,11 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
             startActivity(homeIntent);
         }
         if (v == share) {
-//            Intent i = new Intent(android.content.Intent.ACTION_SEND);
-//            i.setType("text/plain");
-//            i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Share");
-//            i.putExtra(android.content.Intent.EXTRA_TEXT, "Hey! Get Heyla app and win some exciting rewards. https://goo.gl/JTmdEX");
-//            startActivity(Intent.createChooser(i, "Share via"));
+            Intent i = new Intent(android.content.Intent.ACTION_SEND);
+            i.setType("text/plain");
+            i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Share");
+            i.putExtra(android.content.Intent.EXTRA_TEXT, "Hey! Get SkilEx app. https://bit.ly/2JgIyom");
+            startActivity(Intent.createChooser(i, "Share via"));
 
         }
         if (v == logout) {
