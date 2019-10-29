@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "576348243003-6q8nu1vvofvs9a1ou33pvhh83n2dga1g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skilex.skilexserviceperson",
+            "certificate_hash": "425155a61286fd89b806dd38d338c4810128eebc"
+          }
+        },
+        {
           "client_id": "576348243003-81ii3kc3u0d6uind7fs7k03isdgbfl4j.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

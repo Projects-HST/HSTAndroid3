@@ -136,6 +136,7 @@
     <string name="request_otp">OTP எண்ணை கோறுக </string>
     <string name="start">சேவையை ஆரம்பி</string>
     <string name="start_date_time">சேவை தொடங்கப்பட்ட நாள் மற்றும் நேரம்:</string>
+    <string name="resume_date_time">சேவையை மீண்டும் துவங்கும் நாள் மற்றும் நேரம்:</string>
     <string name="additional_services">கூடுதல் சேவைகள் </string>
     <string name="update">புதுப்பிக்க</string>
     <string name="hold">தற்காலிக நிறுத்தம்</string>
