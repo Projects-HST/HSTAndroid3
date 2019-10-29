@@ -29,6 +29,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -135,6 +136,9 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
     public static final String DATE_FORMAT = "yyyyMMdd_HHmmss";
     public static final String IMAGE_DIRECTORY = "ImageScalling";
 
+    private LinearLayout layoutResumeSection;
+    private TextView txtResumeDateTime;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -169,6 +173,9 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
         btnHold.setOnClickListener(this);
         btnSubmit = findViewById(R.id.btn_submit);
         btnSubmit.setOnClickListener(this);
+
+        layoutResumeSection = findViewById(R.id.ll_resume_section);
+        txtResumeDateTime = findViewById(R.id.txt_resume_date_time);
 
         Calendar newCalendar = Calendar.getInstance();
         fromDatePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
@@ -997,6 +1004,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
                     JSONArray getData = response.getJSONArray("detail_services_order");
                     Gson gson = new Gson();
                     JSONObject getServiceData = getData.getJSONObject(0);
+                    String getStatus = getServiceData.getString("status");
 
                     txtServiceCategory.setText(getServiceData.getString("main_cat_name"));
                     txtSubCategory.setText(getServiceData.getString("sub_cat_name"));
@@ -1006,6 +1014,10 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
                     txtServiceProvider.setText(getServiceData.getString("service_person"));
                     txtStartDateTime.setText(getServiceData.getString("start_datetime"));
                     edtMaterialUsed.setText(getServiceData.getString("material_notes"));
+                    if (getStatus.equalsIgnoreCase("Hold")) {
+                        layoutResumeSection.setVisibility(View.VISIBLE);
+                        txtResumeDateTime.setText(getServiceData.getString("resume_date") + " - " + getServiceData.getString("r_fr_time") + " - " + getServiceData.getString("r_to_time"));
+                    }
                 } else if (res.equalsIgnoreCase("update")) {
 
                     Toast.makeText(getApplicationContext(), "Service order updated!", Toast.LENGTH_LONG).show();
