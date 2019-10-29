@@ -88,7 +88,7 @@ public class InitiatedServiceActivity extends BaseActivity implements IServiceLi
             e.printStackTrace();
         }
 
-//        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
         String url = SkilExConstants.BUILD_URL + SkilExConstants.API_INITIATED_SERVICE_DETAIL;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }

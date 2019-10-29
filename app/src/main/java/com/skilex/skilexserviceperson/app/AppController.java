@@ -25,7 +25,7 @@ import java.security.NoSuchAlgorithmException;
 //import com.facebook.FacebookSdk;
 
 
-public class AppController extends android.support.multidex.MultiDexApplication {
+public class AppController extends androidx.multidex.MultiDexApplication {
 
     public static final String TAG = AppController.class
             .getSimpleName();

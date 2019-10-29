@@ -3,9 +3,10 @@ package com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +26,7 @@ import com.skilex.skilexserviceperson.serviceinterfaces.IServiceListener;
 import com.skilex.skilexserviceperson.utils.CommonUtils;
 import com.skilex.skilexserviceperson.utils.PreferenceStorage;
 import com.skilex.skilexserviceperson.utils.SkilExConstants;
+import com.skilex.skilexserviceperson.utils.SkilExValidator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -86,6 +88,7 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
             e.printStackTrace();
         }
 
+        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
         String url = SkilExConstants.BUILD_URL + SkilExConstants.API_SERVICE_PROCESS;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
@@ -104,6 +107,7 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
             e.printStackTrace();
         }
 
+        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
         String url = SkilExConstants.BUILD_URL + SkilExConstants.API_REQUEST_OTP;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
@@ -124,6 +128,7 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
             e.printStackTrace();
         }
 
+        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
         String url = SkilExConstants.BUILD_URL + SkilExConstants.API_START_SERVICE;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
@@ -135,12 +140,30 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
             if (v == txtRequestOTP) {
                 requestOTP();
             } else if (v == btnStartService) {
-                serviceStart();
+                if (validateFields()) {
+                    serviceStart();
+                }
             }
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection available");
         }
 
+    }
+
+    private boolean validateFields() {
+        if (!SkilExValidator.checkMobileNumLength(this.edtOTP.getText().toString().trim())) {
+            edtOTP.setError(getString(R.string.otp_invalid));
+            requestFocus(edtOTP);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
     }
 
     @Override

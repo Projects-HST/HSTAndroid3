@@ -1,7 +1,8 @@
 package com.skilex.skilexserviceperson.activity.fragmentmodule.completed;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
@@ -33,7 +34,7 @@ public class CompletedServiceDetailActivity extends BaseActivity implements ISer
 
     private TextView txtCategory, txtServiceName, txtCustomerName, txtServiceDate, txtServiceTimeSlot, txtServiceProvider,
             txtServicePerson, txtServiceStartDate, txtServiceEndDate, txtMaterialUsed, txtServiceAmount, txtAdditionalServiceAmount,
-            txtSubTotalAmount, txtCouponContent, txtCouponAmount, txtAdvanceAmount, txtGrandTotal;
+            txtSubTotalAmount, txtCouponContent, txtCouponAmount, txtAdvanceAmount, txtGrandTotal, txtViewBill;
 
     String res = "";
 
@@ -70,6 +71,8 @@ public class CompletedServiceDetailActivity extends BaseActivity implements ISer
         txtCouponAmount = findViewById(R.id.coupon_applied_amount);
         txtAdvanceAmount = findViewById(R.id.advance_charge_amount);
         txtGrandTotal = findViewById(R.id.grand_total_amount);
+//        txtViewBill = findViewById(R.id.view_bills);
+//        txtViewBill.setOnClickListener(this);
     }
 
     private void loadServiceDetail() {
@@ -85,13 +88,18 @@ public class CompletedServiceDetailActivity extends BaseActivity implements ISer
             e.printStackTrace();
         }
 
+        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
         String url = SkilExConstants.BUILD_URL + SkilExConstants.API_COMPLETED_SERVICE_DETAIL;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
     @Override
     public void onClick(View v) {
-
+        /*if (v == txtViewBill) {
+            Intent i = new Intent(this, ViewBillActivity.class);
+            i.putExtra("serv", completedService);
+            startActivity(i);
+        }*/
     }
 
     @Override

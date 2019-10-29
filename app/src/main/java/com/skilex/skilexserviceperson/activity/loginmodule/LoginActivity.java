@@ -8,8 +8,9 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -153,11 +154,11 @@ public class LoginActivity extends BaseActivity implements DialogClickListener, 
                     progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
                     String url = SkilExConstants.BUILD_URL + SkilExConstants.MOBILE_VERIFICATION;
                     serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-                } else {
-                    AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection available");
                 }
             } else if (v == lang) {
                 showLangAlert();
+            } else {
+                AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection available");
             }
         }
     }

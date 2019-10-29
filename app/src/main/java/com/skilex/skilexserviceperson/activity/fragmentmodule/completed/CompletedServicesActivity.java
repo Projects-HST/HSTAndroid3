@@ -2,7 +2,7 @@ package com.skilex.skilexserviceperson.activity.fragmentmodule.completed;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -105,7 +105,7 @@ public class CompletedServicesActivity extends BaseActivity implements IServiceL
         Intent intent = new Intent(this, CompletedServiceDetailActivity.class);
         intent.putExtra("serviceObj", service);
         startActivity(intent);
-        finish();
+//        finish();
     }
 
     @Override

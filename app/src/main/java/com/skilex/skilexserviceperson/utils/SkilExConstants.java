@@ -26,6 +26,8 @@ public class SkilExConstants {
     public static String ALERT_DIALOG_POS_BUTTON = "alert_dialog_pos_button";
     public static String ALERT_DIALOG_NEG_BUTTON = "alert_dialog_neg_button";
 
+    public static final String VIEW_BILLS = "service_order_bills/";
+
     //    Service Params
     public static String PARAM_MESSAGE = "msg";
 

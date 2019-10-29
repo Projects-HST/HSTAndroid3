@@ -1,13 +1,11 @@
 package com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing;
 
+
 import android.Manifest;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,9 +19,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -37,12 +32,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.loader.content.CursorLoader;
+
 import com.google.gson.Gson;
 import com.skilex.skilexserviceperson.R;
 import com.skilex.skilexserviceperson.activity.LandingPageActivity;
-import com.skilex.skilexserviceperson.activity.ProfileActivity;
-import com.skilex.skilexserviceperson.activity.fragmentmodule.assigned.AssignedServiceDetailActivity;
-import com.skilex.skilexserviceperson.bean.support.AssignedService;
 import com.skilex.skilexserviceperson.bean.support.OngoingService;
 import com.skilex.skilexserviceperson.bean.support.StoreTimeSlot;
 import com.skilex.skilexserviceperson.customview.CircleImageView;
@@ -56,8 +54,6 @@ import com.skilex.skilexserviceperson.utils.AndroidMultiPartEntity;
 import com.skilex.skilexserviceperson.utils.CommonUtils;
 import com.skilex.skilexserviceperson.utils.PreferenceStorage;
 import com.skilex.skilexserviceperson.utils.SkilExConstants;
-import com.skilex.skilexserviceperson.utils.FilePath;
-import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -197,10 +193,10 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
 
         DatePicker dP = fromDatePickerDialog.getDatePicker();
         Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DAY_OF_MONTH, 2);
+        cal.add(Calendar.DAY_OF_MONTH, 1);
         Calendar cal1 = Calendar.getInstance();
-        cal1.add(Calendar.DAY_OF_YEAR, 2);
-        Date result = cal.getTime();
+        cal1.add(Calendar.DAY_OF_MONTH, 3);
+        Date result = cal1.getTime();
         dP.setMinDate(cal.getTimeInMillis());
         dP.setMaxDate(result.getTime());
     }
@@ -216,7 +212,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
 
         if (!root.exists()) {
             if (!root.mkdirs()) {
-                Log.d(TAG, "Failed to create directory for storing images");
+                d(TAG, "Failed to create directory for storing images");
                 return;
             }
         }
@@ -231,7 +227,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
         final File sdImageMainDirectory = new File(root.getPath() + File.separator + fname);
         destFile = sdImageMainDirectory;
         outputFileUri = Uri.fromFile(sdImageMainDirectory);
-        Log.d(TAG, "camera output Uri" + outputFileUri);
+        d(TAG, "camera output Uri" + outputFileUri);
 
         // Camera.
         file = new File(Environment.getExternalStorageDirectory()
@@ -464,17 +460,19 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        super.onActivityResult(requestCode, resultCode, data);
+
         if (resultCode == RESULT_OK) {
 
             if (requestCode == REQUEST_IMAGE_GET) {
-                Log.d(TAG, "ONActivity Result");
+                d(TAG, "ONActivity Result");
                 final boolean isCamera;
                 if (data == null) {
-                    Log.d(TAG, "camera is true");
+                    d(TAG, "camera is true");
                     isCamera = true;
                 } else {
                     final String action = data.getAction();
-                    Log.d(TAG, "camera action is" + action);
+                    d(TAG, "camera action is" + action);
                     if (action == null) {
                         isCamera = false;
                     } else {
@@ -483,7 +481,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
                 }
 
                 if (isCamera) {
-                    Log.d(TAG, "Add to gallery");
+                    d(TAG, "Add to gallery");
                     mSelectedImageUri = outputFileUri;
                     mActualFilePath = outputFileUri.getPath();
                     galleryAddPic(mSelectedImageUri);
@@ -522,9 +520,9 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
                         finish();
                     }
                 }
-                Log.d(TAG, "image Uri is" + mSelectedImageUri);
+                d(TAG, "image Uri is" + mSelectedImageUri);
                 if (mSelectedImageUri != null) {
-                    Log.d(TAG, "image URI is" + mSelectedImageUri);
+                    d(TAG, "image URI is" + mSelectedImageUri);
 //                    performCrop();
 //                    setPic(mSelectedImageUri);
                     mUpdatedImageUrl = null;
@@ -573,7 +571,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
             e.printStackTrace();
         }
 
-        Log.d(TAG, "Width :" + b.getWidth() + " Height :" + b.getHeight());
+        d(TAG, "Width :" + b.getWidth() + " Height :" + b.getHeight());
 
         destFile = new File(file, "img_"
                 + dateFormatter.format(new Date()).toString() + ".png");
@@ -632,7 +630,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
 
                             }
                         });
-                Log.d(TAG, "actual file path is" + mActualFilePath);
+                d(TAG, "actual file path is" + mActualFilePath);
                 if (mActualFilePath != null) {
 
                     File sourceFile = new File(mActualFilePath);
@@ -664,7 +662,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
                             if (mUpdatedImageUrl != null) {
                                 PreferenceStorage.saveProfilePicture(OngoingServiceDetailActivity.this, mUpdatedImageUrl);
                             }
-                            Log.d(TAG, "updated image url is" + mUpdatedImageUrl);
+                            d(TAG, "updated image url is" + mUpdatedImageUrl);
                             if (successVal.equalsIgnoreCase("success")) {
                             }
                         } catch (JSONException e) {
@@ -733,7 +731,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
                 result = cursor.getString(column_index);
                 cursor.close();
             } else {
-                Log.d(TAG, "cursor is null");
+                d(TAG, "cursor is null");
             }
         } catch (Exception e) {
             result = null;
@@ -1035,7 +1033,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
                     timeSlotAdapter = new ArrayAdapter<StoreTimeSlot>(getApplicationContext(), R.layout.time_slot_layout, R.id.time_slot_range, timeList) { // The third parameter works around ugly Android legacy. http://stackoverflow.com/a/18529511/145173
                         @Override
                         public View getView(int position, View convertView, ViewGroup parent) {
-                            Log.d(TAG, "getview called" + position);
+                            d(TAG, "getview called" + position);
                             View view = getLayoutInflater().inflate(R.layout.time_slot_layout, parent, false);
                             TextView gendername = (TextView) view.findViewById(R.id.time_slot_range);
                             gendername.setText(timeList.get(position).getTimeName());
