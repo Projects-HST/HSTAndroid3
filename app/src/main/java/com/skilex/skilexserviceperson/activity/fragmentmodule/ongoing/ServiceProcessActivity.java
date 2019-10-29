@@ -151,7 +151,7 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
     }
 
     private boolean validateFields() {
-        if (!SkilExValidator.checkMobileNumLength(this.edtOTP.getText().toString().trim())) {
+        if (!SkilExValidator.checkNullString(this.edtOTP.getText().toString().trim())) {
             edtOTP.setError(getString(R.string.otp_invalid));
             requestFocus(edtOTP);
             return false;

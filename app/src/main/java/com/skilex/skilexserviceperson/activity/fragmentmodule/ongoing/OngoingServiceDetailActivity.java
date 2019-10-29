@@ -409,6 +409,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
             e.printStackTrace();
         }
 
+        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
         String url = SkilExConstants.BUILD_URL + SkilExConstants.API_ONGOING_SERVICE_COMPLETE;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }

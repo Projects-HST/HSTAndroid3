@@ -25,4 +25,5 @@
     <color name="Logout">#ED1C24</color>
     <color name="green">#4CB748</color>
     <color name="dark_grey">#939394</color>
+    <color name="onhold">#ed1c24</color>
 </resources>
