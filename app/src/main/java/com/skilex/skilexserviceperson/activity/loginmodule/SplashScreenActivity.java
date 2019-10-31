@@ -3,6 +3,9 @@ package com.skilex.skilexserviceperson.activity.loginmodule;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -11,6 +14,9 @@ import com.skilex.skilexserviceperson.activity.LandingPageActivity;
 import com.skilex.skilexserviceperson.languagesupport.BaseActivity;
 import com.skilex.skilexserviceperson.utils.PreferenceStorage;
 import com.skilex.skilexserviceperson.utils.SkilExValidator;
+import com.skilex.skilexserviceperson.utils.SmsVerification;
+
+import java.util.ArrayList;
 
 public class SplashScreenActivity extends BaseActivity {
 
@@ -26,6 +32,15 @@ public class SplashScreenActivity extends BaseActivity {
             String refreshedToken = FirebaseInstanceId.getInstance().getToken();
             PreferenceStorage.saveGCM(getApplicationContext(), refreshedToken);
         }
+
+        ArrayList<String> appCodes = new ArrayList<>();
+        SmsVerification hash = new SmsVerification(getBaseContext());
+        appCodes = hash.getAppSignatures();
+        String yourhash = appCodes.get(0);
+        Log.d("Hash Key: ", yourhash);
+        System.out.println("Hash Key: " + yourhash);
+
+//        Toast.makeText(SplashScreenActivity.this, "Hash key...  " + yourhash, Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
             @Override
