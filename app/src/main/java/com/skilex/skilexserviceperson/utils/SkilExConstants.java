@@ -8,11 +8,11 @@ public class SkilExConstants {
 
     //Development Mode
     //delopment
-//    public static final String JOINT_URL = "development/";
+    public static final String JOINT_URL = "development/";
     //uat
 //    public static final String JOINT_URL = "uat/";
     //live
-    public static final String JOINT_URL = "";
+//    public static final String JOINT_URL = "";
 
     //BUILD URL
     public static final String BUILD_URL = BASE_URL + JOINT_URL + "apisperson/";
@@ -84,6 +84,22 @@ public class SkilExConstants {
     public static final String PARAM_RESUME_DATE = "resume_date";
     public static final String PARAM_RESUME_TIME = "resume_timeslot";
     public static final String PARAM_STATUS = "status";
+
+    //
+    public static String SERVICE_RATE = "service_rate";
+    public static String SERVICE_COUNT = "service_count";
+    public static String SERVICE_STATUS = "sat";
+    public static String MAIN_CATEGORY_ID = "main_cat_id";
+    public static String CATEGORY_ID = "category_id";
+    public static String SUB_CATEGORY_ID = "sub_cat_id";
+    public static String SERVICE_ID = "service_id";
+    public static String SUB_CAT_ID = "sub_category_id";
+
+    //ADD SERVICE CART URL
+    public static final String ADD_TO_CART = "add_service_to_cart/";
+
+    //Additional services
+    public static final String API_LIST_ADDITIONAL_SERVICES = "list_addtional_services/";
 
     //Initiate service
     public static final String API_INITIATE_SERVICE = "initiate_services/";

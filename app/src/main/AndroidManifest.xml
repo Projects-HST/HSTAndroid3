@@ -104,6 +104,20 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
+            android:name=".activity.fragmentmodule.ongoing.AdditionalServicesListActivity"
+            android:label="@string/ongoing_title"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".activity.fragmentmodule.ongoing.AddAdditionalServices"
+            android:label="@string/ongoing_title"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
             android:name=".activity.fragmentmodule.ongoing.OngoingServiceDetailActivity"
             android:label="@string/ongoing_title"
             android:screenOrientation="portrait"
@@ -117,12 +131,12 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
 
-        <activity
+        <!--<activity
             android:name=".activity.fragmentmodule.ongoing.LocationNavigationActivity"
             android:label="@string/ongoing_title"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden" />-->
 
         <activity
             android:name=".activity.fragmentmodule.ongoing.ServiceProcessActivity"

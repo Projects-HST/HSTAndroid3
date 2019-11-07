@@ -98,7 +98,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
     OngoingService ongoingService;
 
     private TextView txtServiceCategory, txtSubCategory, txtCustomerName, txtServiceDate, txtServiceTime, txtServiceProvider,
-            txtStartDateTime, txtAttachBill;
+            txtStartDateTime, txtAttachBill, btnAdditionalServices;
     private EditText edtMaterialUsed;
     private Button btnUpdate, btnHold, btnSubmit;
 
@@ -173,6 +173,8 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
         btnHold.setOnClickListener(this);
         btnSubmit = findViewById(R.id.btn_submit);
         btnSubmit.setOnClickListener(this);
+        btnAdditionalServices = findViewById(R.id.btn_additional_services);
+        btnAdditionalServices.setOnClickListener(this);
 
         layoutResumeSection = findViewById(R.id.ll_resume_section);
         txtResumeDateTime = findViewById(R.id.txt_resume_date_time);
@@ -415,7 +417,6 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
     }
 
 
-
     private void showFileChooser() {
         Intent intent = new Intent();
         //sets the select file to all types of files
@@ -425,45 +426,6 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
         //starts new activity to select file and return data
         startActivityForResult(Intent.createChooser(intent, "Choose file to upload.."), PICK_FILE_REQUEST);
     }
-
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == PICK_FILE_REQUEST) {
-                if (data == null) {
-                    //no data present
-                    return;
-                }
-
-                Uri selectedFileUri = data.getData();
-                selectedFilePath = FilePath.getPath(this, selectedFileUri);
-                Log.i(TAG, "Selected File Path:" + selectedFilePath);
-
-                if (selectedFilePath != null && !selectedFilePath.equals("")) {
-                    sizeCge = new File(selectedFilePath);
-                    if (sizeCge.length() >= 40000000) {
-                        AlertDialogHelper.showSimpleAlertDialog(this, "File size too large");
-                        selectedFilePath = null;
-                    } else {
-                        Toast.makeText(this, "Uploading...", Toast.LENGTH_SHORT).show();
-                        dialog = ProgressDialog.show(OngoingServiceDetailActivity.this, "", "Uploading File...", true);
-
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                //creating new thread to handle Http Operations
-//                        uploadFile(selectedFilePath);
-                                new PostDataAsyncTask().execute();
-                            }
-                        }).start();
-                    }
-                } else {
-                    Toast.makeText(this, "Cannot upload file to server", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
-    }*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -953,6 +915,10 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
                 holdService();
             } else if (v == btnSubmit) {
                 completeService();
+            } else if (v == btnAdditionalServices) {
+                Intent intent = new Intent(this, AdditionalServicesListActivity.class);
+                intent.putExtra("serviceObj", ongoingService);
+                startActivity(intent);
             }
 
         } else {

@@ -184,4 +184,94 @@ public class PreferenceStorage {
     }
     /*End*/
 
+    /*To Service rate*/
+    public static void saveRate(Context context, String rate) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SkilExConstants.SERVICE_RATE, rate);
+        editor.apply();
+    }
+
+    public static String getRate(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String catClick;
+        catClick = sharedPreferences.getString(SkilExConstants.SERVICE_RATE, "");
+        return catClick;
+    }
+    /*End*/
+
+    /*To Service count click*/
+    public static void saveServiceCount(Context context, String cat) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SkilExConstants.SERVICE_COUNT, cat);
+        editor.apply();
+    }
+
+    public static String getServiceCount(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String catClick;
+        catClick = sharedPreferences.getString(SkilExConstants.SERVICE_COUNT, "");
+        return catClick;
+    }
+    /*End*/
+
+    /*To Service purchase status click*/
+    public static void savePurchaseStatus(Context context, boolean cat) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(SkilExConstants.SERVICE_STATUS, cat);
+        editor.apply();
+    }
+
+    public static boolean getPurchaseStatus(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        boolean catClick;
+        catClick = sharedPreferences.getBoolean(SkilExConstants.SERVICE_STATUS, false);
+        return catClick;
+    }
+    /*End*/
+
+    /*To category click*/
+    public static void saveCatClick(Context context, String cat) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SkilExConstants.MAIN_CATEGORY_ID, cat);
+        editor.apply();
+    }
+
+    public static String getCatClick(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String catClick;
+        catClick = sharedPreferences.getString(SkilExConstants.MAIN_CATEGORY_ID, "");
+        return catClick;
+    }
+    /*End*/
+
+    /*To sub category click*/
+    public static void saveSubCatClick(Context context, String cat) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SkilExConstants.SUB_CATEGORY_ID, cat);
+        editor.apply();
+    }
+
+    public static String getSubCatClick(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String catClick;
+        catClick = sharedPreferences.getString(SkilExConstants.SUB_CATEGORY_ID, "");
+        return catClick;
+    }
+    /*End*/
+
 }
