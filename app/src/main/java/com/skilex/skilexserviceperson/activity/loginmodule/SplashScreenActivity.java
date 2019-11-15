@@ -8,7 +8,9 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.skilex.skilexserviceperson.R;
 import com.skilex.skilexserviceperson.activity.LandingPageActivity;
 import com.skilex.skilexserviceperson.languagesupport.BaseActivity;
@@ -27,11 +29,11 @@ public class SplashScreenActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_display);
 
-        String GCMKey = PreferenceStorage.getGCM(getApplicationContext());
-        if (GCMKey.equalsIgnoreCase("")) {
-            String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-            PreferenceStorage.saveGCM(getApplicationContext(), refreshedToken);
-        }
+//        String GCMKey = PreferenceStorage.getGCM(getApplicationContext());
+//        if (GCMKey.equalsIgnoreCase("")) {
+//            String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+//            PreferenceStorage.saveGCM(getApplicationContext(), refreshedToken);
+//        }
 
         ArrayList<String> appCodes = new ArrayList<>();
         SmsVerification hash = new SmsVerification(getBaseContext());
@@ -56,6 +58,14 @@ public class SplashScreenActivity extends BaseActivity {
 
                     } else {
                         Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(SplashScreenActivity.this, new OnSuccessListener<InstanceIdResult>() {
+                            @Override
+                            public void onSuccess(InstanceIdResult instanceIdResult) {
+                                String newToken = instanceIdResult.getToken();
+                                Log.e("newToken", newToken);
+                                PreferenceStorage.saveGCM(getApplicationContext(), newToken);
+                            }
+                        });
 //                homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(i);
                         finish();
@@ -63,6 +73,15 @@ public class SplashScreenActivity extends BaseActivity {
                 } else {
 
                     Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                    FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(SplashScreenActivity.this, new OnSuccessListener<InstanceIdResult>() {
+                        @Override
+                        public void onSuccess(InstanceIdResult instanceIdResult) {
+                            String newToken = instanceIdResult.getToken();
+                            Log.e("newToken", newToken);
+                            PreferenceStorage.saveGCM(getApplicationContext(), newToken);
+
+                        }
+                    });
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
                     finish();
