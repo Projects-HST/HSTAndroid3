@@ -16,11 +16,13 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.skilex.skilexserviceperson.R;
 import com.skilex.skilexserviceperson.activity.LandingPageActivity;
+import com.skilex.skilexserviceperson.bean.database.SQLiteHelper;
 import com.skilex.skilexserviceperson.bean.support.OngoingService;
 import com.skilex.skilexserviceperson.helper.AlertDialogHelper;
 import com.skilex.skilexserviceperson.helper.ProgressDialogHelper;
 import com.skilex.skilexserviceperson.interfaces.DialogClickListener;
 import com.skilex.skilexserviceperson.languagesupport.BaseActivity;
+import com.skilex.skilexserviceperson.servicehelpers.GoogleLocationService;
 import com.skilex.skilexserviceperson.servicehelpers.ServiceHelper;
 import com.skilex.skilexserviceperson.serviceinterfaces.IServiceListener;
 import com.skilex.skilexserviceperson.utils.CommonUtils;
@@ -47,6 +49,8 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
     private Button btnStartService;
     String res = "";
 
+    SQLiteHelper database;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +60,7 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
         ongoingService = (OngoingService) getIntent().getSerializableExtra("serviceObj");
+        database = new SQLiteHelper(getApplicationContext());
 
         init();
         loadServiceDetail();
@@ -231,6 +236,20 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
                     Toast.makeText(getApplicationContext(), "OTP has been sent to your customer number", Toast.LENGTH_LONG).show();
 
                 } else if (res.equalsIgnoreCase("start")) {
+
+                    database.deleteAllCurrentBestLocation();
+                    database.deleteAllPreviousBestLocation();
+                    database.deleteAllStoredLocationData();
+
+
+//        deleteTableRecords.deleteAllRecords();
+                    stopService(new Intent(ServiceProcessActivity.this, GoogleLocationService.class));
+//        stopService(new Intent(MainActivity.this, GPSTracker.class));
+
+
+//                    am.cancel(pi);
+
+
                     Toast.makeText(getApplicationContext(), "Service has been started!", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(getApplicationContext(), LandingPageActivity.class);
                     startActivity(i);

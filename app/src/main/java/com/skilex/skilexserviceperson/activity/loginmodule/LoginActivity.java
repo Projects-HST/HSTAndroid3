@@ -6,11 +6,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
+import android.os.PowerManager;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -65,6 +68,8 @@ public class LoginActivity extends BaseActivity implements DialogClickListener, 
 
     private static final int CREDENTIAL_PICKER_REQUEST = 1;  // Set to an unused request code
 
+    private static final int IGNORE_BATTERY_OPTIMIZATION_REQUEST = 1002;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +91,22 @@ public class LoginActivity extends BaseActivity implements DialogClickListener, 
         if (prefFirstTime.runTheFirstTime("FirstTimePermit")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 requestAllPermissions();
+            }
+        }
+
+        PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            boolean isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(getPackageName());
+            if (!isIgnoringBatteryOptimizations) {
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                intent.setData(Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, IGNORE_BATTERY_OPTIMIZATION_REQUEST);
+
+                /*intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                intent.setData(Uri.parse("package:" + getPackageName()));
+                startActivity(intent);*/
             }
         }
 

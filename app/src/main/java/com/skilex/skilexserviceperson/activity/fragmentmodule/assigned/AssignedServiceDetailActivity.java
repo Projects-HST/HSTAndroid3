@@ -1,9 +1,17 @@
 package com.skilex.skilexserviceperson.activity.fragmentmodule.assigned;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,6 +24,7 @@ import com.skilex.skilexserviceperson.helper.AlertDialogHelper;
 import com.skilex.skilexserviceperson.helper.ProgressDialogHelper;
 import com.skilex.skilexserviceperson.interfaces.DialogClickListener;
 import com.skilex.skilexserviceperson.languagesupport.BaseActivity;
+import com.skilex.skilexserviceperson.servicehelpers.GoogleLocationService;
 import com.skilex.skilexserviceperson.servicehelpers.ServiceHelper;
 import com.skilex.skilexserviceperson.serviceinterfaces.IServiceListener;
 import com.skilex.skilexserviceperson.utils.CommonUtils;
@@ -25,6 +34,8 @@ import com.skilex.skilexserviceperson.utils.SkilExConstants;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 import static android.util.Log.d;
 
@@ -41,6 +52,9 @@ public class AssignedServiceDetailActivity extends BaseActivity implements IServ
     Button btnCancel, btnInitiate;
     String res = "";
     String expertId = "";
+
+    AlarmManager am;
+    PendingIntent pi;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,6 +94,92 @@ public class AssignedServiceDetailActivity extends BaseActivity implements IServ
         btnInitiate = findViewById(R.id.btnInitiate);
         btnInitiate.setOnClickListener(this);
 
+        if (!checkPhoneModel()) {
+            if (PreferenceStorage.getLocationCheck(this)) {
+                PreferenceStorage.saveLocationCheck(this, false);
+                android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(AssignedServiceDetailActivity.this);
+                alertDialogBuilder.setTitle("Auto Start");
+                alertDialogBuilder.setMessage("Enable auto start for the app to function properly");
+                alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        addAutoStartup();
+                    }
+                });
+                alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alertDialogBuilder.show();
+
+            }
+        }
+
+    }
+
+    private boolean checkPhoneModel() {
+
+        String manufacturer = android.os.Build.MANUFACTURER;
+
+        if ("xiaomi".equalsIgnoreCase(manufacturer)) {
+            return false;
+        } else if ("oppo".equalsIgnoreCase(manufacturer)) {
+            return false;
+        } else if ("vivo".equalsIgnoreCase(manufacturer)) {
+            return false;
+        } else if ("Letv".equalsIgnoreCase(manufacturer)) {
+            return false;
+        } else if ("Honor".equalsIgnoreCase(manufacturer)) {
+            return false;
+        } else if ("oneplus".equalsIgnoreCase(manufacturer)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private void addAutoStartup() {
+
+        try {
+            Intent intent = new Intent();
+            String manufacturer = android.os.Build.MANUFACTURER;
+            if ("xiaomi".equalsIgnoreCase(manufacturer)) {
+                intent.setComponent(new ComponentName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity"));
+            } else if ("oppo".equalsIgnoreCase(manufacturer)) {
+                intent.setComponent(new ComponentName("com.oppo.safe", "com.oppo.safe.permission.startup.StartupAppListActivity"));
+            } else if ("vivo".equalsIgnoreCase(manufacturer)) {
+                intent.setComponent(new ComponentName("com.vivo.permissionmanager", "com.vivo.permissionmanager.activity.BgStartUpManagerActivity"));
+            } else if ("Letv".equalsIgnoreCase(manufacturer)) {
+                intent.setComponent(new ComponentName("com.letv.android.letvsafe", "com.letv.android.letvsafe.AutobootManageActivity"));
+            } else if ("Honor".equalsIgnoreCase(manufacturer)) {
+                intent.setComponent(new ComponentName("com.huawei.systemmanager", "com.huawei.systemmanager.optimize.process.ProtectActivity"));
+            } else if ("oneplus".equalsIgnoreCase(manufacturer)) {
+                intent.setComponent(new ComponentName("com.oneplus.security", "com.oneplus.security.chainlaunch.view.ChainLaunchAppListAct‌​ivity"));
+            }
+//            intent.setComponent(new ComponentName("com.samsung.android.lool",
+//                    "com.samsung.android.sm.ui.battery.BatteryActivity"));
+//                    new Intent("miui.intent.action.OP_AUTO_START").addCategory(Intent.CATEGORY_DEFAULT);
+//                    intent.setComponent(new ComponentName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity"));
+//                    intent.setComponent(new ComponentName("com.letv.android.letvsafe", "com.letv.android.letvsafe.AutobootManageActivity"));
+//                    intent.setComponent(new ComponentName("com.huawei.systemmanager", "com.huawei.systemmanager.optimize.process.ProtectActivity"));
+//                    intent.setComponent(new ComponentName("com.coloros.safecenter", "com.coloros.safecenter.permission.startup.StartupAppListActivity"));
+//                    intent.setComponent(new ComponentName("com.coloros.safecenter", "com.coloros.safecenter.startupapp.StartupAppListActivity"));
+//                    intent.setComponent(new ComponentName("com.oppo.safe", "com.oppo.safe.permission.startup.StartupAppListActivity"));
+//                    intent.setComponent(new ComponentName("com.iqoo.secure", "com.iqoo.secure.ui.phoneoptimize.AddWhiteListActivity"));
+//                    intent.setComponent(new ComponentName("com.iqoo.secure", "com.iqoo.secure.ui.phoneoptimize.BgStartUpManager"));
+//                    intent.setComponent(new ComponentName("com.vivo.permissionmanager", "com.vivo.permissionmanager.activity.BgStartUpManagerActivity"));
+//                    intent.setComponent(new ComponentName("com.asus.mobilemanager", "com.asus.mobilemanager.entry.FunctionActivity")).setData(
+//                            Uri.parse("mobilemanager://function/entry/AutoStart"));
+
+            List<ResolveInfo> list = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+            if (list.size() > 0) {
+                startActivity(intent);
+            }
+        } catch (Exception e) {
+            Log.e("exc", String.valueOf(e));
+        }
     }
 
     void loadServiceDetails() {
@@ -121,6 +221,26 @@ public class AssignedServiceDetailActivity extends BaseActivity implements IServ
                 });
                 alertDialogBuilder.show();
             } else if (v == btnInitiate) {
+                PreferenceStorage.saveServiceOrderId(getApplicationContext(), assignedService.getServiceOrderId());
+
+
+                try {
+                    String alarm = Context.ALARM_SERVICE;
+                    am = (AlarmManager) getSystemService(alarm);
+
+                    Intent intent = new Intent("REFRESH_THIS");
+                    pi = PendingIntent.getBroadcast(this, 123456789, intent, 0);
+
+                    int type = AlarmManager.RTC_WAKEUP;
+                    long interval = 50 * 50;
+
+                    am.setInexactRepeating(type, System.currentTimeMillis(), interval, pi);
+                } catch (NullPointerException ex) {
+                    ex.printStackTrace();
+                }
+
+                startService(new Intent(AssignedServiceDetailActivity.this, GoogleLocationService.class));
+
                 initiateService();
             }
         } else {
@@ -204,6 +324,7 @@ public class AssignedServiceDetailActivity extends BaseActivity implements IServ
                     serviceTime.setText(getServiceData.getString("from_time"));
                     estimateAmount.setText(getServiceData.getString("service_rate_card"));
                 } else if (res.equalsIgnoreCase("initiateService")) {
+
                     finish();
 
                 }

@@ -200,6 +200,10 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
 
+        <service
+            android:name=".servicehelpers.GoogleLocationService"
+            android:enabled="true" />
+
     </application>
 
 </manifest>

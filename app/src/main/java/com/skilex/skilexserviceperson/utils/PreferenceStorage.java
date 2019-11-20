@@ -274,4 +274,40 @@ public class PreferenceStorage {
     }
     /*End*/
 
+    /*To store service order id*/
+    public static void saveServiceOrderId(Context context, String userMasterId) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SkilExConstants.KEY_SERVICE_ORDER_ID, userMasterId);
+        editor.apply();
+    }
+
+    public static String getServiceOrderId(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String userMasterId;
+        userMasterId = sharedPreferences.getString(SkilExConstants.KEY_SERVICE_ORDER_ID, "");
+        return userMasterId;
+    }
+    /*End*/
+
+    // Center Id
+    public static void saveLocationCheck(Context context, Boolean check) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("tnsrl_check", check);
+        editor.apply();
+    }
+
+    public static Boolean getLocationCheck(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        Boolean check = true;
+        check = sharedPreferences.getBoolean("tnsrl_check",check);
+        return check;
+    }
+    /*End*/
+
 }

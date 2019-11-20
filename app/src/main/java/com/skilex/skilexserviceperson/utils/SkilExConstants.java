@@ -8,11 +8,11 @@ public class SkilExConstants {
 
     //Development Mode
     //delopment
-//    public static final String JOINT_URL = "development/";
+    public static final String JOINT_URL = "development/";
     //uat
 //    public static final String JOINT_URL = "uat/";
     //live
-    public static final String JOINT_URL = "";
+//    public static final String JOINT_URL = "";
 
     //BUILD URL
     public static final String BUILD_URL = BASE_URL + JOINT_URL + "apisperson/";
@@ -39,6 +39,8 @@ public class SkilExConstants {
 
     //  Shared User Master Id
     public static final String KEY_USER_MASTER_ID = "user_master_id";
+
+    public static final String KEY_SERVICE_ORDER_ID = "service_order_id";
 
     //Login type
     public static final String PREF_LOGIN_TYPE = "login_type";
@@ -134,5 +136,15 @@ public class SkilExConstants {
     public static final String UPDATE_PROFILE = "profile_update/";
     public static final String UPLOAD_IMAGE = "profile_pic_upload/";
 
+
+    public static final String API_PERSON_TRACKING = "add_tracking/";
+
+    //    MTS params
+    public static final String PARAMS_LATITUDE = "latitude";
+    public static final String PARAMS_LONGITUDE = "longitude";
+    public static final String PARAMS_LOCATION = "location";
+    public static final String PARAMS_DISTANCE = "miles";
+    public static final String PARAMS_DATETIME = "location_datetime";
+    public static final String PARAMS_SERVICE_ORDER_ID = "service_order_id";
 
 }
