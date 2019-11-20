@@ -100,7 +100,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
     private TextView txtServiceCategory, txtSubCategory, txtCustomerName, txtServiceDate, txtServiceTime, txtServiceProvider,
             txtStartDateTime, txtAttachBill, btnAdditionalServices;
     private EditText edtMaterialUsed;
-    private Button btnUpdate, btnHold, btnSubmit;
+    private Button btnUpdate, btnHold, btnSubmit, btnResume;
 
     String res = "";
     String expertId = "";
@@ -171,6 +171,8 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
         btnUpdate.setOnClickListener(this);
         btnHold = findViewById(R.id.btn_hold_services);
         btnHold.setOnClickListener(this);
+        btnResume = findViewById(R.id.btn_resume_services);
+        btnResume.setOnClickListener(this);
         btnSubmit = findViewById(R.id.btn_submit);
         btnSubmit.setOnClickListener(this);
         btnAdditionalServices = findViewById(R.id.btn_additional_services);
@@ -304,6 +306,24 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
         }
 
         String url = SkilExConstants.BUILD_URL + SkilExConstants.API_ONGOING_SERVICE_DETAIL_UPDATE;
+        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+    }
+
+    private void serviceStart() {
+        res = "restart";
+        JSONObject jsonObject = new JSONObject();
+        String id = "", otp = "";
+        id = PreferenceStorage.getUserMasterId(this);
+        try {
+            jsonObject.put(SkilExConstants.USER_MASTER_ID, id);
+            jsonObject.put(SkilExConstants.SERVICE_ORDER_ID, ongoingService.getServiceOrderId());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+        String url = SkilExConstants.BUILD_URL + SkilExConstants.API_ON_HOLD_TO_RESUME_SERVICE;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -913,6 +933,8 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
                 updateService();
             } else if (v == btnHold) {
                 holdService();
+            } else if (v == btnResume) {
+                serviceStart();
             } else if (v == btnSubmit) {
                 completeService();
             } else if (v == btnAdditionalServices) {
@@ -983,7 +1005,12 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
                     edtMaterialUsed.setText(getServiceData.getString("material_notes"));
                     if (getStatus.equalsIgnoreCase("Hold")) {
                         layoutResumeSection.setVisibility(View.VISIBLE);
+                        btnHold.setVisibility(View.GONE);
+                        btnResume.setVisibility(View.VISIBLE);
                         txtResumeDateTime.setText(getServiceData.getString("resume_date") + " - " + getServiceData.getString("r_fr_time") + " - " + getServiceData.getString("r_to_time"));
+                    } else {
+                        layoutResumeSection.setVisibility(View.GONE);
+
                     }
                 } else if (res.equalsIgnoreCase("update")) {
 
@@ -1024,6 +1051,11 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
 
                     showTimeSlotList();
                 } else if (res.equalsIgnoreCase("hold")) {
+                    Toast.makeText(getApplicationContext(), "Service order updated!", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(this, OnGoingServicesActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else if (res.equalsIgnoreCase("restart")) {
                     Toast.makeText(getApplicationContext(), "Service order updated!", Toast.LENGTH_LONG).show();
                     finish();
                 }

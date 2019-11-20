@@ -135,6 +135,7 @@
     <string name="start">Start</string>
     <string name="start_date_time">Date and time at which the service started:</string>
     <string name="resume_date_time">Date and time at which the service resumed:</string>
+    <string name="resume">Resume</string>
     <string name="additional_services">Additional Services</string>
     <string name="update">Update</string>
     <string name="hold">Hold</string>

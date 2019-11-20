@@ -73,7 +73,9 @@ public class AdditionalServicesListActivity extends BaseActivity implements ISer
         switch (item.getItemId()) {
             case R.id.add_service_person:
                 Intent intent = new Intent(getApplicationContext(), AddAdditionalServices.class);
+                intent.putExtra("serviceObj", ongoingService);
                 startActivity(intent);
+                finish();
                 break;
         }
         return true;

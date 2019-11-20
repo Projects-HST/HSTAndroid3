@@ -349,6 +349,23 @@
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 
+                <Button
+                    android:id="@+id/btn_resume_services"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_round_color_border"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:text="@string/resume"
+                    android:textAllCaps="false"
+                    android:visibility="gone"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+
 
                 <Button
                     android:id="@+id/btn_submit"

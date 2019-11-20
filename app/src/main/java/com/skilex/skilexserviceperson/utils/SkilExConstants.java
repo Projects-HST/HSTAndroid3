@@ -72,6 +72,10 @@ public class SkilExConstants {
     public static final String API_ASSIGNED_SERVICE = "list_assigned_services/";
     public static final String API_ASSIGNED_SERVICE_DETAILS = "detail_assigned_services/";
 
+    //Add services list
+    public static final String API_ADD_SERVICE = "add_addtional_services/";
+    public static final String API_SERVICE_LIST = "add_extra_services/";
+
     //Ongoing service list
     public static final String API_ONGOING_SERVICE = "list_ongoing_services/";
     public static final String API_INITIATED_SERVICE_DETAIL = "detail_initiated_services/";
@@ -83,6 +87,7 @@ public class SkilExConstants {
     public static final String API_ONGOING_SERVICE_COMPLETE = "complete_services/";
     public static final String UPLOAD_BILL_DOCUMENT = "upload_service_bills/";
     public static final String API_ON_HOLD_SERVICE_UPDATE = "onhold_services/";
+    public static final String API_ON_HOLD_TO_RESUME_SERVICE = "from_hold_to_ongoing/";
     public static final String PARAM_RESUME_DATE = "resume_date";
     public static final String PARAM_RESUME_TIME = "resume_timeslot";
     public static final String PARAM_STATUS = "status";
@@ -96,6 +101,7 @@ public class SkilExConstants {
     public static String SUB_CATEGORY_ID = "sub_cat_id";
     public static String SERVICE_ID = "service_id";
     public static String SUB_CAT_ID = "sub_category_id";
+    public static String ADDITONAL_SERVICE_RATE_CARD = "ad_service_rate_card";
 
     //ADD SERVICE CART URL
     public static final String ADD_TO_CART = "add_service_to_cart/";
@@ -137,7 +143,8 @@ public class SkilExConstants {
     public static final String UPLOAD_IMAGE = "profile_pic_upload/";
 
 
-    public static final String API_PERSON_TRACKING = "add_tracking/";
+//    public static final String API_PERSON_TRACKING = "add_tracking/";
+    public static final String API_PERSON_TRACKING = "add_current_location/";
 
     //    MTS params
     public static final String PARAMS_LATITUDE = "latitude";

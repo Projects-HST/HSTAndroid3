@@ -17,26 +17,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:background="@color/blue"
-            android:fontFamily="@font/helvetica"
-            android:elevation="6dp"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:tabGravity="center"
-            app:tabIndicatorColor="@color/white"
-            app:tabMode="scrollable" />
-
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
+        <ListView
+            android:id="@+id/listSumService"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            android:layout_alignParentTop="true" />
 
     </LinearLayout>
 

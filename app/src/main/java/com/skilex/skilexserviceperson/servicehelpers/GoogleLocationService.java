@@ -471,10 +471,10 @@ public class GoogleLocationService extends Service implements LocationListener, 
             jsonObject.put(SkilExConstants.KEY_USER_MASTER_ID, PreferenceStorage.getUserMasterId(getApplicationContext()));
             jsonObject.put(SkilExConstants.PARAMS_LATITUDE, currentLatitude);
             jsonObject.put(SkilExConstants.PARAMS_LONGITUDE, currentLongitude);
-            jsonObject.put(SkilExConstants.PARAMS_DATETIME, currentDateandTime);
-            jsonObject.put(SkilExConstants.PARAMS_LOCATION, locationAddress);
-            jsonObject.put(SkilExConstants.PARAMS_DISTANCE, dist);
-            jsonObject.put(SkilExConstants.PARAMS_SERVICE_ORDER_ID, PreferenceStorage.getServiceOrderId(getApplicationContext()));
+//            jsonObject.put(SkilExConstants.PARAMS_DATETIME, currentDateandTime);
+//            jsonObject.put(SkilExConstants.PARAMS_LOCATION, locationAddress);
+//            jsonObject.put(SkilExConstants.PARAMS_DISTANCE, dist);
+//            jsonObject.put(SkilExConstants.PARAMS_SERVICE_ORDER_ID, PreferenceStorage.getServiceOrderId(getApplicationContext()));
         } catch (JSONException e) {
             e.printStackTrace();
         }

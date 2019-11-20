@@ -113,6 +113,7 @@ public class OnGoingServicesActivity extends BaseActivity implements IServiceLis
             Intent intent = new Intent(this, OngoingServiceDetailActivity.class);
             intent.putExtra("serviceObj", service);
             startActivity(intent);
+            finish();
         }
         /*Intent intent = new Intent(this, OngoingServiceDetailActivity.class);
         intent.putExtra("serviceObj", service);
