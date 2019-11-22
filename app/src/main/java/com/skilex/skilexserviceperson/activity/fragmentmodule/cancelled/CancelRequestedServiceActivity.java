@@ -82,13 +82,13 @@ public class CancelRequestedServiceActivity extends BaseActivity implements ISer
         res = "reason";
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put(SkilExConstants.KEY_USER_TYPE, "4");
+            jsonObject.put(SkilExConstants.USER_MASTER_ID, PreferenceStorage.getUserMasterId(this));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        String url = SkilExConstants.BUILD_URL + SkilExConstants.API_CANCEL_REASON;
+        String url = SkilExConstants.BUILD_URL + SkilExConstants.API_CANCEL_REASON_LIST;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -185,7 +185,7 @@ public class CancelRequestedServiceActivity extends BaseActivity implements ISer
         if (validateResponse(response)) {
             try {
                 if (res.equalsIgnoreCase("reason")) {
-                    JSONArray getData = response.getJSONArray("list_reasons");
+                    JSONArray getData = response.getJSONArray("reason_list");
                     int getLength = getData.length();
                     String cancelMasterId = "";
                     String cancelReason = "";

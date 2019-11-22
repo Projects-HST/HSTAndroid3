@@ -118,6 +118,7 @@ public class SkilExConstants {
 
     //Cancel service
     public static final String API_CANCEL_REASON = "cancel_service_reasons/";
+    public static final String API_CANCEL_REASON_LIST = "list_reason_for_cancel/";
     public static final String API_CANCEL_SERVICE = "cancel_services/";
     public static String CANCEL_ID = "cancel_master_id";
     public static String CANCEL_COMMENTS = "comments";
