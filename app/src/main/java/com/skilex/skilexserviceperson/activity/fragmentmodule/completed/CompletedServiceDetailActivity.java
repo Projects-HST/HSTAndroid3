@@ -165,7 +165,7 @@ public class CompletedServiceDetailActivity extends BaseActivity implements ISer
                     JSONObject getServiceData1 = getData1.getJSONObject(0);
 
                     txtServiceAmount.setText(getServiceData1.getString("service_amount"));
-                    txtAdditionalServiceAmount.setText(getServiceData1.getString("discount_amt"));
+                    txtAdditionalServiceAmount.setText(getServiceData1.getString("ad_service_amount"));
                     txtSubTotalAmount.setText(getServiceData1.getString("total_service_amount"));
                     txtCouponContent.setText(getServiceData1.getString("coupon_id"));
                     txtCouponAmount.setText(getServiceData1.getString("discount_amt"));
