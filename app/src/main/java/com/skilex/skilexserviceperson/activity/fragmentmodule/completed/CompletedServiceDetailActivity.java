@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.skilex.skilexserviceperson.R;
+import com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing.AdditionalServicesListActivity;
 import com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing.OngoingServiceDetailActivity;
 import com.skilex.skilexserviceperson.bean.support.CompletedService;
 import com.skilex.skilexserviceperson.helper.AlertDialogHelper;
@@ -36,6 +38,7 @@ public class CompletedServiceDetailActivity extends BaseActivity implements ISer
             txtServicePerson, txtServiceStartDate, txtServiceEndDate, txtMaterialUsed, txtServiceAmount, txtAdditionalServiceAmount,
             txtSubTotalAmount, txtCouponContent, txtCouponAmount, txtAdvanceAmount, txtGrandTotal, txtViewBill;
 
+    private LinearLayout additional;
     String res = "";
 
     @Override
@@ -73,6 +76,8 @@ public class CompletedServiceDetailActivity extends BaseActivity implements ISer
         txtGrandTotal = findViewById(R.id.grand_total_amount);
 //        txtViewBill = findViewById(R.id.view_bills);
 //        txtViewBill.setOnClickListener(this);
+        additional = findViewById(R.id.additional_layout);
+        additional.setOnClickListener(this);
     }
 
     private void loadServiceDetail() {
@@ -100,6 +105,12 @@ public class CompletedServiceDetailActivity extends BaseActivity implements ISer
             i.putExtra("serv", completedService);
             startActivity(i);
         }*/
+        if (v == additional) {
+            Intent intent = new Intent(getApplicationContext(), AdditionalServicesListActivity.class);
+            intent.putExtra("serviceObj", completedService);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override
