@@ -109,6 +109,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.fragmentmodule.ongoing.AdditionalServicesAcitivity"
+            android:label="@string/ongoing_title"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".activity.fragmentmodule.ongoing.AddAdditionalServices"

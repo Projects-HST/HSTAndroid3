@@ -131,12 +131,12 @@ public class AllAdditionalServiceListAdapter  extends BaseAdapter implements ISe
                             services.get(finalPosition1).setSelected("1");
                             loadCat(finalPosition1);
                         }
-//                        else {
-//                            holder.addList.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
-//                            holder.addList.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_control_point_black_24dp));
-//                            removeService(finalPosition1);
-//                            services.get(finalPosition1).setSelected("0");
-//                        }
+                        else {
+                            holder.addList.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
+                            holder.addList.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_control_point_black_24dp));
+                            removeService(finalPosition1);
+                            services.get(finalPosition1).setSelected("0");
+                        }
                     }
                     notifyDataSetChanged();
                 }
@@ -179,12 +179,12 @@ public class AllAdditionalServiceListAdapter  extends BaseAdapter implements ISe
                             services.get(finalPosition1).setSelected("1");
                             loadCat(finalPosition1);
                         }
-//                        else {
-//                            holder.addList.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
-//                            holder.addList.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_control_point_black_24dp));
-//                            removeService(finalPosition1);
-//                            services.get(finalPosition1).setSelected("0");
-//                        }
+                        else {
+                            holder.addList.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
+                            holder.addList.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_control_point_black_24dp));
+                            removeService(finalPosition1);
+                            services.get(finalPosition1).setSelected("0");
+                        }
                     }
                     notifyDataSetChanged();
                 }
@@ -366,6 +366,31 @@ public class AllAdditionalServiceListAdapter  extends BaseAdapter implements ISe
 
 //        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
         String url = SkilExConstants.BUILD_URL + SkilExConstants.API_ADD_SERVICE;
+        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+    }
+
+    private void removeService(int position) {
+        res = "remove";
+        JSONObject jsonObject = new JSONObject();
+        String idService = "";
+        idService = services.get(position).getservice_id();
+        String idServiceOrder = "";
+        idServiceOrder = PreferenceStorage.getServiceOrderId(context);
+        String idRate = "";
+        idRate = services.get(position).getRate_card();
+        String id = "";
+        id = PreferenceStorage.getUserMasterId(context);
+
+        try {
+            jsonObject.put(SkilExConstants.USER_MASTER_ID, id);
+            jsonObject.put(SkilExConstants.SERVICE_ID, idService);
+            jsonObject.put(SkilExConstants.SERVICE_ORDER_ID, idServiceOrder);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+//        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+        String url = SkilExConstants.BUILD_URL + SkilExConstants.API_ADD_REMOVE_SERVICE;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.skilex.skilexserviceperson.R;
+import com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing.AdditionalServicesAcitivity;
 import com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing.AdditionalServicesListActivity;
 import com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing.OngoingServiceDetailActivity;
 import com.skilex.skilexserviceperson.bean.support.CompletedService;
@@ -106,7 +107,7 @@ public class CompletedServiceDetailActivity extends BaseActivity implements ISer
             startActivity(i);
         }*/
         if (v == additional) {
-            Intent intent = new Intent(getApplicationContext(), AdditionalServicesListActivity.class);
+            Intent intent = new Intent(getApplicationContext(), AdditionalServicesAcitivity.class);
             intent.putExtra("serviceObj", completedService);
             startActivity(intent);
             finish();
