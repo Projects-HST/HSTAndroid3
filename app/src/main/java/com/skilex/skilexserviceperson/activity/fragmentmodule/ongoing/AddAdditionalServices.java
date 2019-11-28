@@ -1,5 +1,6 @@
 package com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -62,6 +63,14 @@ public class AddAdditionalServices extends BaseActivity implements IServiceListe
         PreferenceStorage.saveServiceOrderId(this, ongoingService.getServiceOrderId());
         loadMoreListView = findViewById(R.id.listSumService);
         callGetSubCategoryService();
+
+    }
+
+    public void onBackPressed(){
+        // do something here and don't write super.onBackPressed()
+        Intent intent = new Intent(getApplicationContext(), AdditionalServicesAcitivity.class);
+        intent.putExtra("serviceObj", ongoingService);
+        startActivity(intent);
     }
 
     public void callGetSubCategoryService() {

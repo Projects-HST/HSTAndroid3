@@ -11,7 +11,7 @@ public class SkilExConstants {
     public static final String JOINT_URL = "development/";
     //uat
 //    public static final String JOINT_URL = "uat/";
-//    live
+    //live
 //    public static final String JOINT_URL = "";
 
     //BUILD URL
@@ -74,6 +74,8 @@ public class SkilExConstants {
 
     //Add services list
     public static final String API_ADD_SERVICE = "add_addtional_services/";
+    public static final String API_ADD_REMOVE_SERVICE = "remove_addtional_services/";
+    public static final String API_ADD_REMOVE_SERVICE_LIST = "list_remove_addtional_services/";
     public static final String API_SERVICE_LIST = "add_extra_services/";
 
     //Ongoing service list

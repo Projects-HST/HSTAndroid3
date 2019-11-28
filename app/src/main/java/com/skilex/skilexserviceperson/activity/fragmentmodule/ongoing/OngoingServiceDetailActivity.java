@@ -938,7 +938,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
             } else if (v == btnSubmit) {
                 completeService();
             } else if (v == btnAdditionalServices) {
-                Intent intent = new Intent(this, AdditionalServicesListActivity.class);
+                Intent intent = new Intent(this, AdditionalServicesAcitivity.class);
                 intent.putExtra("serviceObj", ongoingService);
                 startActivity(intent);
             }

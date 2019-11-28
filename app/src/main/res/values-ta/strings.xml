@@ -175,6 +175,7 @@
     <string name="user_gender">பாலினம்</string>
     <string name="select_user_gender">தேர்ந்தெடுக்கவும்</string>
 
+    <string name="remove_service">Service Removed</string>
     <string name="about_us">ஸ்கிலெக்ஸ் பற்றி</string>
     <string name="google_android_map_api_key">AIzaSyBhkisGSNkn_QS3yOpS1QnN_Bhzs6_aiQE</string>
 <!--    <string name="google_android_map_api_key">AIzaSyD428E0W4-pf4kJuJ3rsqG5vCELRgmR2ok</string>-->

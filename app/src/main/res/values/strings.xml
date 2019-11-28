@@ -173,6 +173,7 @@
     <string name="user_gender">Gender</string>
     <string name="select_user_gender">Select Gender</string>
 
+    <string name="remove_service">Service Removed</string>
     <string name="about_us">About Us</string>
     <string name="google_android_map_api_key">AIzaSyBhkisGSNkn_QS3yOpS1QnN_Bhzs6_aiQE</string>
 <!--    <string name="google_android_map_api_key">AIzaSyD428E0W4-pf4kJuJ3rsqG5vCELRgmR2ok</string>-->
