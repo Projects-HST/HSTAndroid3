@@ -66,7 +66,12 @@
             android:label="@string/otp_action_bar"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".activity.loginmodule.LoginActivity" />
+        </activity>
+
 
         <activity
             android:name=".activity.LandingPageActivity"
