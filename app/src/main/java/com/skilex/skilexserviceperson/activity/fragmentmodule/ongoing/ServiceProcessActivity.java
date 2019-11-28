@@ -231,7 +231,7 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
                     txtServiceDate.setText(getServiceData.getString("order_date"));
                     txtServiceTime.setText(getServiceData.getString("from_time"));
                     txtServiceProvider.setText(getServiceData.getString("service_provider"));
-                } else if (res.equalsIgnoreCase("otp")) {
+                } else if (res.equalsIgnoreCase("opt")) {
 
                     Toast.makeText(getApplicationContext(), "OTP has been sent to your customer number", Toast.LENGTH_LONG).show();
 

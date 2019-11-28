@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.skilex.skilexserviceperson.R;
@@ -324,7 +325,7 @@ public class AssignedServiceDetailActivity extends BaseActivity implements IServ
                     serviceTime.setText(getServiceData.getString("from_time"));
                     estimateAmount.setText(getServiceData.getString("service_rate_card"));
                 } else if (res.equalsIgnoreCase("initiateService")) {
-
+                    Toast.makeText(this, "Service Initiated!", Toast.LENGTH_SHORT).show();
                     finish();
 
                 }
