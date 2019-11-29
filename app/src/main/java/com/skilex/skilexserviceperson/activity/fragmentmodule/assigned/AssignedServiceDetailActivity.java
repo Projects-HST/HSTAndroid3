@@ -62,6 +62,10 @@ public class AssignedServiceDetailActivity extends BaseActivity implements IServ
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assigned_service_detail);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
@@ -70,6 +74,12 @@ public class AssignedServiceDetailActivity extends BaseActivity implements IServ
 
         setUpUI();
         loadServiceDetails();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     void setUpUI() {
@@ -325,7 +335,7 @@ public class AssignedServiceDetailActivity extends BaseActivity implements IServ
                     serviceTime.setText(getServiceData.getString("from_time"));
                     estimateAmount.setText(getServiceData.getString("service_rate_card"));
                 } else if (res.equalsIgnoreCase("initiateService")) {
-                    Toast.makeText(this, "Service Initiated!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Service Initiated!", Toast.LENGTH_LONG).show();
                     finish();
 
                 }

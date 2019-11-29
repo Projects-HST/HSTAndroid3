@@ -54,6 +54,12 @@ public class AddAdditionalServices extends BaseActivity implements IServiceListe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_additional_services);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
@@ -66,12 +72,18 @@ public class AddAdditionalServices extends BaseActivity implements IServiceListe
 
     }
 
-    public void onBackPressed(){
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    /*public void onBackPressed(){
         // do something here and don't write super.onBackPressed()
         Intent intent = new Intent(getApplicationContext(), AdditionalServicesAcitivity.class);
         intent.putExtra("serviceObj", ongoingService);
         startActivity(intent);
-    }
+    }*/
 
     public void callGetSubCategoryService() {
         if (CommonUtils.isNetworkAvailable(this)) {

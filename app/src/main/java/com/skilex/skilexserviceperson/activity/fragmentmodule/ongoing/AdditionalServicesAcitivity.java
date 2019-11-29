@@ -71,11 +71,24 @@ public class AdditionalServicesAcitivity extends AppCompatActivity implements IS
     Button confrm;
     ListView loadMoreListView;
 
+    String checkAddButtonFlag = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additional_services_list);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            checkAddButtonFlag = extras.getString("AddButtonFlag");
+            //The key argument here must match that used in the other activity
+        }
+
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
@@ -93,6 +106,12 @@ public class AdditionalServicesAcitivity extends AppCompatActivity implements IS
 
 //        loadMoreListView = findViewById(R.id.listSumService);
         callGetSubCategoryService();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     private void showExit() {
@@ -215,12 +234,15 @@ public class AdditionalServicesAcitivity extends AppCompatActivity implements IS
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (checkAddButtonFlag.equalsIgnoreCase("Completed")) {
+            item.setVisible(false);
+        }
         switch (item.getItemId()) {
             case R.id.add_service_person:
                 Intent intent = new Intent(getApplicationContext(), AddAdditionalServices.class);
                 intent.putExtra("serviceObj", ongoingService);
                 startActivity(intent);
-                finish();
+//                finish();
                 break;
         }
         return true;

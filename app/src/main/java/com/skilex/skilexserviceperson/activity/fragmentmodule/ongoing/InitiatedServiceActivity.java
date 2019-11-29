@@ -64,6 +64,10 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initiated_service_detail);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
@@ -91,6 +95,12 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
         mapView.onCreate(mapViewBundle);
         mapView.getMapAsync(this);
         loadServiceDetails();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     void loadServiceDetails() {
