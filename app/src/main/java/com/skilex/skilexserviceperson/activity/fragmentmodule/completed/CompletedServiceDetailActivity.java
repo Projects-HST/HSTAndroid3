@@ -47,6 +47,11 @@ public class CompletedServiceDetailActivity extends BaseActivity implements ISer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_completed_service_details);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
@@ -55,6 +60,13 @@ public class CompletedServiceDetailActivity extends BaseActivity implements ISer
 
         init();
         loadServiceDetail();
+    }
+
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     void init() {
@@ -109,8 +121,9 @@ public class CompletedServiceDetailActivity extends BaseActivity implements ISer
         if (v == additional) {
             Intent intent = new Intent(getApplicationContext(), AdditionalServicesAcitivity.class);
             intent.putExtra("serviceObj", completedService);
+            intent.putExtra("AddButtonFlag", "Completed");
             startActivity(intent);
-            finish();
+//            finish();
         }
     }
 

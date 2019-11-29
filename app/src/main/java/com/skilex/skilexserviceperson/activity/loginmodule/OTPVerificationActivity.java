@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -52,7 +53,7 @@ public class OTPVerificationActivity extends BaseActivity implements View.OnClic
     private static final String TAG = OTPVerificationActivity.class.getName();
 
     private CustomOtpEditText otpEditText;
-    private TextView tvResendOTP;
+    private TextView tvResendOTP, tvCountDown;
     private ImageView btnConfirm;
     private String mobileNo;
     private String checkVerify;
@@ -73,6 +74,7 @@ public class OTPVerificationActivity extends BaseActivity implements View.OnClic
         otpEditText = findViewById(R.id.otp_view);
         tvResendOTP = findViewById(R.id.resend);
         tvResendOTP.setOnClickListener(this);
+        tvCountDown = findViewById(R.id.contentresend);
         btnConfirm = findViewById(R.id.sendcode);
         btnConfirm.setOnClickListener(this);
 
@@ -107,6 +109,28 @@ public class OTPVerificationActivity extends BaseActivity implements View.OnClic
                 Toast.makeText(OTPVerificationActivity.this, "Failed listening for otp...", Toast.LENGTH_SHORT).show();
             }
         });
+
+        countDownTimers();
+    }
+
+    void countDownTimers() {
+        new CountDownTimer(30 * 1000 + 1000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                tvResendOTP.setVisibility(View.GONE);
+                int seconds = (int) (millisUntilFinished / 1000);
+                int minutes = seconds / 60;
+                seconds = seconds % 60;
+                tvCountDown.setText("Resend again in " + String.format("%02d", minutes)
+                        + ":" + String.format("%02d", seconds) + " seconds");
+            }
+
+            public void onFinish() {
+                tvCountDown.setText("Try again...");
+                tvCountDown.setVisibility(View.GONE);
+                tvResendOTP.setVisibility(View.VISIBLE);
+            }
+        }.start();
     }
 
     @Override
@@ -130,6 +154,8 @@ public class OTPVerificationActivity extends BaseActivity implements View.OnClic
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {
                                 checkVerify = "Resend";
+                                countDownTimers();
+                                tvCountDown.setVisibility(View.VISIBLE);
                                 JSONObject jsonObject = new JSONObject();
                                 try {
 

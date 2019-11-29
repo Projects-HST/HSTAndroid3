@@ -17,6 +17,10 @@ public class AboutUsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
 
 //        WebView wb = (WebView) findViewById(R.id.webView1);
 //
@@ -30,6 +34,12 @@ public class AboutUsActivity extends BaseActivity {
 //                    return true;
 //                }
 //            });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
 }

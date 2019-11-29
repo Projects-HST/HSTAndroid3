@@ -54,6 +54,10 @@ public class OnGoingServicesActivity extends BaseActivity implements IServiceLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ongoing_service);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
@@ -62,6 +66,12 @@ public class OnGoingServicesActivity extends BaseActivity implements IServiceLis
         loadMoreListView.setOnItemClickListener(this);
 
         callAssignService();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     public void callAssignService() {
@@ -113,7 +123,7 @@ public class OnGoingServicesActivity extends BaseActivity implements IServiceLis
             Intent intent = new Intent(this, OngoingServiceDetailActivity.class);
             intent.putExtra("serviceObj", service);
             startActivity(intent);
-            finish();
+//            finish();
         }
         /*Intent intent = new Intent(this, OngoingServiceDetailActivity.class);
         intent.putExtra("serviceObj", service);

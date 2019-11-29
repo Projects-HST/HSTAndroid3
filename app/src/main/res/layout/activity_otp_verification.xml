@@ -71,7 +71,8 @@
                     android:id="@+id/contentresend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/didntrecievecode" />
+                    android:text="@string/didntrecievecode"
+                    android:textColor="@color/blue" />
 
                 <TextView
                     android:id="@+id/resend"
@@ -79,7 +80,8 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/contentresend"
                     android:text="@string/resend"
-                    android:textColor="@color/blue" />
+                    android:textColor="@color/blue"
+                    android:visibility="gone" />
             </RelativeLayout>
 
             <LinearLayout

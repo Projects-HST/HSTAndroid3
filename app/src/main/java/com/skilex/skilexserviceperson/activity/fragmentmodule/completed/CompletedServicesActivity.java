@@ -54,6 +54,10 @@ public class CompletedServicesActivity extends BaseActivity implements IServiceL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_completed_service);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
@@ -62,6 +66,12 @@ public class CompletedServicesActivity extends BaseActivity implements IServiceL
         loadMoreListView.setOnItemClickListener(this);
 
         callAssignService();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     public void callAssignService() {

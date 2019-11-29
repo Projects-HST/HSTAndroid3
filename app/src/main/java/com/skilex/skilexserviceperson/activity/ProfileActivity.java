@@ -181,6 +181,12 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         };
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
     private void showGenderList() {
         AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
 
