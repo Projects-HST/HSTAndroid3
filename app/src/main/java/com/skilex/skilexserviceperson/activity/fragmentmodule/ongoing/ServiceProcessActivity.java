@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+
+import android.os.CountDownTimer;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -45,7 +47,7 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
 
     private TextView txtServiceCategory, txtSubCategory, txtCustomerName, txtServiceDate, txtServiceTime, txtServiceProvider;
     private EditText edtOTP;
-    private TextView txtRequestOTP;
+    private TextView txtRequestOTP, tvCountDown;
     private Button btnStartService;
     String res = "";
 
@@ -56,6 +58,10 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_process);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
@@ -64,6 +70,12 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
 
         init();
         loadServiceDetail();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     void init() {
@@ -76,6 +88,7 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
         edtOTP = findViewById(R.id.edt_otp);
         txtRequestOTP = findViewById(R.id.txt_request_otp);
         txtRequestOTP.setOnClickListener(this);
+        tvCountDown = findViewById(R.id.contentresend);
         btnStartService = findViewById(R.id.btn_start);
         btnStartService.setOnClickListener(this);
     }
@@ -99,6 +112,7 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
     }
 
     private void requestOTP() {
+        tvCountDown.setVisibility(View.VISIBLE);
         edtOTP.setEnabled(true);
         res = "opt";
         JSONObject jsonObject = new JSONObject();
@@ -115,6 +129,26 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
         String url = SkilExConstants.BUILD_URL + SkilExConstants.API_REQUEST_OTP;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+    }
+
+    void countDownTimers() {
+        new CountDownTimer(30 * 1000 + 1000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                txtRequestOTP.setVisibility(View.GONE);
+                int seconds = (int) (millisUntilFinished / 1000);
+                int minutes = seconds / 60;
+                seconds = seconds % 60;
+                tvCountDown.setText("Resend in " + String.format("%02d", minutes)
+                        + ":" + String.format("%02d", seconds) + " seconds");
+            }
+
+            public void onFinish() {
+                tvCountDown.setText("Try again...");
+                tvCountDown.setVisibility(View.GONE);
+                txtRequestOTP.setVisibility(View.VISIBLE);
+            }
+        }.start();
     }
 
     private void serviceStart() {
@@ -232,7 +266,7 @@ public class ServiceProcessActivity extends BaseActivity implements IServiceList
                     txtServiceTime.setText(getServiceData.getString("from_time"));
                     txtServiceProvider.setText(getServiceData.getString("service_provider"));
                 } else if (res.equalsIgnoreCase("opt")) {
-
+                    countDownTimers();
                     Toast.makeText(getApplicationContext(), "OTP has been sent to your customer number", Toast.LENGTH_LONG).show();
 
                 } else if (res.equalsIgnoreCase("start")) {

@@ -80,7 +80,7 @@ public class AddAdditionalServices extends BaseActivity implements IServiceListe
 
     /*public void onBackPressed(){
         // do something here and don't write super.onBackPressed()
-        Intent intent = new Intent(getApplicationContext(), AdditionalServicesAcitivity.class);
+        Intent intent = new Intent(getApplicationContext(), AdditionalServicesActivity.class);
         intent.putExtra("serviceObj", ongoingService);
         startActivity(intent);
     }*/

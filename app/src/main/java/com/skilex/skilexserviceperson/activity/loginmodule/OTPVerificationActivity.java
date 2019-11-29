@@ -121,7 +121,7 @@ public class OTPVerificationActivity extends BaseActivity implements View.OnClic
                 int seconds = (int) (millisUntilFinished / 1000);
                 int minutes = seconds / 60;
                 seconds = seconds % 60;
-                tvCountDown.setText("Resend again in " + String.format("%02d", minutes)
+                tvCountDown.setText("Resend in " + String.format("%02d", minutes)
                         + ":" + String.format("%02d", seconds) + " seconds");
             }
 

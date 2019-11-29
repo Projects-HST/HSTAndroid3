@@ -948,7 +948,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
             } else if (v == btnSubmit) {
                 completeService();
             } else if (v == btnAdditionalServices) {
-                Intent intent = new Intent(this, AdditionalServicesAcitivity.class);
+                Intent intent = new Intent(this, AdditionalServicesActivity.class);
                 intent.putExtra("serviceObj", ongoingService);
                 intent.putExtra("AddButtonFlag", "Ongoing");
                 startActivity(intent);
@@ -1062,12 +1062,14 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
 
                     showTimeSlotList();
                 } else if (res.equalsIgnoreCase("hold")) {
-                    Toast.makeText(getApplicationContext(), "Service order updated!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Service is in hold!", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(this, OnGoingServicesActivity.class);
                     startActivity(intent);
                     finish();
                 } else if (res.equalsIgnoreCase("restart")) {
-                    Toast.makeText(getApplicationContext(), "Service order updated!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Service restarted!", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(this, OnGoingServicesActivity.class);
+                    startActivity(intent);
                     finish();
                 }
 

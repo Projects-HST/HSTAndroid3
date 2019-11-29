@@ -2,7 +2,9 @@ package com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -116,6 +118,12 @@ public class OnGoingServicesActivity extends BaseActivity implements IServiceLis
 
         if (checkServiceStatus.equalsIgnoreCase("Initiated")) {
             Intent intent = new Intent(this, InitiatedServiceActivity.class);
+//            Intent intent = new Intent(this, LocationNavigationActivity.class);
+            intent.putExtra("serviceObj", service);
+            startActivity(intent);
+        } else if (checkServiceStatus.equalsIgnoreCase("Started")) {
+
+            Intent intent = new Intent(this, ServiceProcessActivity.class);
 //            Intent intent = new Intent(this, LocationNavigationActivity.class);
             intent.putExtra("serviceObj", service);
             startActivity(intent);

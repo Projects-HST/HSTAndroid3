@@ -60,7 +60,7 @@
 
     <!--Home page-->
     <string name="assigned">Assigned Service</string>
-    <string name="ongoing">On going Service</string>
+    <string name="ongoing">Ongoing Service</string>
     <string name="service_history">Service History</string>
 
     <!--Profile Settings Page-->
@@ -113,6 +113,9 @@
 
     <!--OnGoing Services-->
     <string name="ongoing_title">Ongoing Services</string>
+
+    <!--Additional Services-->
+    <string name="additional_title">Additional Services</string>
 
     <!--Completed Services-->
     <string name="completed_title">Completed Services</string>

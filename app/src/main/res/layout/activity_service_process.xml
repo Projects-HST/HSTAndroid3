@@ -188,13 +188,24 @@
 
             <EditText
                 android:id="@+id/edt_otp"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:enabled="false"
+                android:gravity="center"
                 android:hint="@string/sp_enter_otp_hint"
+                android:inputType="number"
                 android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/contentresend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/didntrecievecode"
+                android:textColor="@color/blue"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/txt_request_otp"

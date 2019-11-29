@@ -14,6 +14,7 @@ import com.skilex.skilexserviceperson.R;
 import com.skilex.skilexserviceperson.adapter.AdditionalServiceListAdapter;
 import com.skilex.skilexserviceperson.bean.support.AdditionalService;
 import com.skilex.skilexserviceperson.bean.support.AdditionalServiceList;
+import com.skilex.skilexserviceperson.bean.support.CompletedService;
 import com.skilex.skilexserviceperson.bean.support.OngoingService;
 import com.skilex.skilexserviceperson.helper.AlertDialogHelper;
 import com.skilex.skilexserviceperson.helper.ProgressDialogHelper;
@@ -44,27 +45,44 @@ public class AdditionalServicesListActivity extends BaseActivity implements ISer
     AdditionalServiceListAdapter serviceListAdapter;
     ListView loadMoreListView;
     String ser = "";
-    OngoingService ongoingService;
+//    OngoingService ongoingService;
+    CompletedService completedService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additional_services_list);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
 
 //        ser = getIntent().getStringExtra("serviceObj");
-        ongoingService = (OngoingService) getIntent().getSerializableExtra("serviceObj");
+        completedService = (CompletedService) getIntent().getSerializableExtra("serviceObj");
 
         loadMoreListView = findViewById(R.id.listSumService);
         callGetSubCategoryService();
+    }
+
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.service_person_menu, menu);
+        MenuItem shareItem = menu.findItem(R.id.add_service_person);
+//        if (checkAddButtonFlag.equalsIgnoreCase("Completed")) {
+            shareItem.setVisible(false);
+//        }
         return true;
     }
 
@@ -73,10 +91,12 @@ public class AdditionalServicesListActivity extends BaseActivity implements ISer
         switch (item.getItemId()) {
             case R.id.add_service_person:
                 Intent intent = new Intent(getApplicationContext(), AddAdditionalServices.class);
-                intent.putExtra("serviceObj", ongoingService);
+                intent.putExtra("serviceObj", completedService);
                 startActivity(intent);
                 finish();
                 break;
+            default:
+                return super.onOptionsItemSelected(item);
         }
         return true;
     }
@@ -97,7 +117,7 @@ public class AdditionalServicesListActivity extends BaseActivity implements ISer
         id = ser;
         try {
             jsonObject.put(SkilExConstants.USER_MASTER_ID, PreferenceStorage.getUserMasterId(getApplicationContext()));
-            jsonObject.put(SkilExConstants.SERVICE_ORDER_ID, ongoingService.getServiceOrderId());
+            jsonObject.put(SkilExConstants.SERVICE_ORDER_ID, completedService.getServiceOrderId());
 
         } catch (JSONException e) {
             e.printStackTrace();

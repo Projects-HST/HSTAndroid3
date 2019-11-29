@@ -9,9 +9,10 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.skilex.skilexserviceperson.R;
-import com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing.AdditionalServicesAcitivity;
+import com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing.AdditionalServicesActivity;
 import com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing.AdditionalServicesListActivity;
 import com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing.OngoingServiceDetailActivity;
+import com.skilex.skilexserviceperson.bean.support.AdditionalService;
 import com.skilex.skilexserviceperson.bean.support.CompletedService;
 import com.skilex.skilexserviceperson.helper.AlertDialogHelper;
 import com.skilex.skilexserviceperson.helper.ProgressDialogHelper;
@@ -119,7 +120,7 @@ public class CompletedServiceDetailActivity extends BaseActivity implements ISer
             startActivity(i);
         }*/
         if (v == additional) {
-            Intent intent = new Intent(getApplicationContext(), AdditionalServicesAcitivity.class);
+            Intent intent = new Intent(getApplicationContext(), AdditionalServicesListActivity.class);
             intent.putExtra("serviceObj", completedService);
             intent.putExtra("AddButtonFlag", "Completed");
             startActivity(intent);
