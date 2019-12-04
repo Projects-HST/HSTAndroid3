@@ -294,6 +294,7 @@
                     android:layout_height="100dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+                    android:inputType="textCapSentences"
                     android:hint="@string/material_used" />
 
                 <TextView

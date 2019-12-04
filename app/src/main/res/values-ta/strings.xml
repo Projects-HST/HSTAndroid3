@@ -116,6 +116,9 @@
     <!--OnGoing Services-->
     <string name="ongoing_title">நடப்பு சேவைகள்</string>
 
+    <!--Additional Services-->
+    <string name="additional_title">கூடுதல் சேவைகள்</string>
+
     <!--Completed Services-->
     <string name="completed_title">நிறைவுற்ற சேவைகள்</string>
 
