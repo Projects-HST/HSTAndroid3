@@ -35,6 +35,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.skilex.skilexserviceperson.BuildConfig;
 import com.skilex.skilexserviceperson.R;
+import com.skilex.skilexserviceperson.activity.LandingPageActivity;
 import com.skilex.skilexserviceperson.activity.fragmentmodule.cancelled.CancelRequestedServiceActivity;
 import com.skilex.skilexserviceperson.bean.support.AssignedService;
 import com.skilex.skilexserviceperson.helper.AlertDialogHelper;
@@ -387,10 +388,16 @@ public class AssignedServiceDetailActivity extends BaseActivity implements IServ
                     serviceTime.setText(getServiceData.getString("from_time"));
                     estimateAmount.setText(getServiceData.getString("service_rate_card"));
                 } else if (res.equalsIgnoreCase("initiateService")) {
-                    Toast.makeText(this, "Service Initiated!", Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(this, LandingPageActivity.class);
+//                    intent.putExtra("serviceObj", service);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                     finish();
+                    Toast.makeText(this, "Service Initiated!", Toast.LENGTH_LONG).show();
 
                 }
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
