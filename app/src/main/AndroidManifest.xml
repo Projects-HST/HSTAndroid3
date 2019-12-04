@@ -215,9 +215,18 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_android_map_api_key" />
 
+
+        <!-- Foreground services in Q+ require type. -->
         <service
-            android:name=".servicehelpers.GoogleLocationService"
-            android:enabled="true" />
+            android:name=".servicehelpers.LocationUpdatesService"
+            android:enabled="true"
+            android:exported="true"
+            android:foregroundServiceType="location" />
+
+
+        <!--        <service-->
+<!--            android:name=".servicehelpers.GoogleLocationService"-->
+<!--            android:enabled="true" />-->
 
     </application>
 

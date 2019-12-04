@@ -1,10 +1,16 @@
 package com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,11 +35,13 @@ import com.skilex.skilexserviceperson.helper.AlertDialogHelper;
 import com.skilex.skilexserviceperson.helper.ProgressDialogHelper;
 import com.skilex.skilexserviceperson.interfaces.DialogClickListener;
 import com.skilex.skilexserviceperson.languagesupport.BaseActivity;
+import com.skilex.skilexserviceperson.servicehelpers.LocationUpdatesService;
 import com.skilex.skilexserviceperson.servicehelpers.ServiceHelper;
 import com.skilex.skilexserviceperson.serviceinterfaces.IServiceListener;
 import com.skilex.skilexserviceperson.utils.CommonUtils;
 import com.skilex.skilexserviceperson.utils.PreferenceStorage;
 import com.skilex.skilexserviceperson.utils.SkilExConstants;
+import com.skilex.skilexserviceperson.utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,7 +49,7 @@ import org.json.JSONObject;
 
 import static android.util.Log.d;
 
-public class InitiatedServiceActivity extends BaseActivity implements OnMapReadyCallback, IServiceListener, DialogClickListener, View.OnClickListener {
+public class InitiatedServiceActivity extends BaseActivity implements OnMapReadyCallback, IServiceListener, DialogClickListener, View.OnClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String TAG = InitiatedServiceActivity.class.getName();
     private ServiceHelper serviceHelper;
@@ -58,6 +66,32 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
     LatLng livLoc;
     Marker currentLocationMarker;
     private Handler handler = new Handler();
+    private Button mRequestLocationUpdatesButton;
+    private Button mRemoveLocationUpdatesButton;
+
+    // A reference to the service used to get location updates.
+    private LocationUpdatesService mService = null;
+
+    // Tracks the bound state of the service.
+    private boolean mBound = false;
+
+    // Monitors the state of the connection to the service.
+    private final ServiceConnection mServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            LocationUpdatesService.LocalBinder binder = (LocationUpdatesService.LocalBinder) service;
+            mService = binder.getService();
+            mBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mService = null;
+            mBound = false;
+        }
+    };
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -222,6 +256,7 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
             if (v == imgCall) {
 
             } else if (v == btnNext) {
+                mRemoveLocationUpdatesButton.performClick();
                 Intent i = new Intent(getApplicationContext(), ServiceProcessActivity.class);
                 i.putExtra("serviceObj", ongoingService);
                 startActivity(i);
@@ -257,6 +292,37 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
     protected void onStart() {
         super.onStart();
         mapView.onStart();
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .registerOnSharedPreferenceChangeListener(this);
+
+        mRequestLocationUpdatesButton = (Button) findViewById(R.id.request_location_updates_button);
+        mRemoveLocationUpdatesButton = (Button) findViewById(R.id.remove_location_updates_button);
+
+        mRequestLocationUpdatesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                if (!checkPermissions()) {
+//                    requestPermissions();
+//                } else {
+//                    mService.requestLocationUpdates();
+//                }
+            }
+        });
+
+        mRemoveLocationUpdatesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mService.removeLocationUpdates();
+            }
+        });
+
+        // Restore the state of the buttons when the activity (re)launches.
+        setButtonsState(Utils.requestingLocationUpdates(this));
+
+        // Bind to the service. If the service is in foreground mode, this signals to the service
+        // that since this activity is in the foreground, the service can exit foreground mode.
+        bindService(new Intent(this, LocationUpdatesService.class), mServiceConnection,
+                Context.BIND_AUTO_CREATE);
     }
 
     @Override
@@ -288,5 +354,24 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
         mMap = googleMap;
 //        mMap.setMinZoomPreference(12);
         LatLng ny = new LatLng(40.7143528, -74.0059731);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        // Update the buttons state depending on whether location updates are being requested.
+        if (s.equals(Utils.KEY_REQUESTING_LOCATION_UPDATES)) {
+            setButtonsState(sharedPreferences.getBoolean(Utils.KEY_REQUESTING_LOCATION_UPDATES,
+                    false));
+        }
+    }
+
+    private void setButtonsState(boolean requestingLocationUpdates) {
+        if (requestingLocationUpdates) {
+            mRequestLocationUpdatesButton.setEnabled(false);
+            mRemoveLocationUpdatesButton.setEnabled(true);
+        } else {
+            mRequestLocationUpdatesButton.setEnabled(true);
+            mRemoveLocationUpdatesButton.setEnabled(false);
+        }
     }
 }
