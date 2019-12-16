@@ -1,21 +1,27 @@
 package com.skilex.skilexserviceperson.activity.fragmentmodule.ongoing;
 
+import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -62,7 +68,7 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
     private MapView mapView;
     private GoogleMap mMap;
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
-
+    private RelativeLayout nameLay;
     LatLng livLoc;
     Marker currentLocationMarker;
     private Handler handler = new Handler();
@@ -116,6 +122,9 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
 
         btnNext = findViewById(R.id.btn_next);
         btnNext.setOnClickListener(this);
+
+        nameLay = findViewById(R.id.name_layout);
+        nameLay.setOnClickListener(this);
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
@@ -261,6 +270,8 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
                 i.putExtra("serviceObj", ongoingService);
                 startActivity(i);
                 finish();
+            } else if (v == nameLay) {
+                callNumber();
             }
 
         } else {
@@ -268,6 +279,25 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
         }
     }
 
+    public void callNumber() {
+        try {
+            Intent callIntent = new Intent(Intent.ACTION_CALL);
+            callIntent.setData(Uri.parse("tel:" + cusPhone.getText().toString()));
+            if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    Activity#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for Activity#requestPermissions for more details.
+                return;
+            }
+            startActivity(callIntent);
+        } catch (ActivityNotFoundException activityException) {
+            Log.e("Calling a Phone Number", "Call failed", activityException);
+        }
+    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {

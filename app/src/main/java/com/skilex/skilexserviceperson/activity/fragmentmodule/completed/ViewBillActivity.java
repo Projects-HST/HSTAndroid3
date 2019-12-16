@@ -272,7 +272,7 @@ public class ViewBillActivity extends BaseActivity implements IServiceListener, 
         progressDialogHelper.cancelProgressDialog();
         try {
             if (response.getString("status").equalsIgnoreCase("success")){
-                JSONArray getData = response.getJSONArray("service_bill");
+                JSONArray getData = response.getJSONArray("bill_copy_result");
                 Gson gson = new Gson();
                 Type listType = new TypeToken<ArrayList<Bill>>() {
                 }.getType();

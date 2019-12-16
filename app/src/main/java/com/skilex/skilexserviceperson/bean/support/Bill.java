@@ -11,7 +11,7 @@ public class Bill implements Serializable {
     @Expose
     private String id;
 
-    @SerializedName("file_bill")
+    @SerializedName("bill_copy_url")
     @Expose
     private String file_bill;
 

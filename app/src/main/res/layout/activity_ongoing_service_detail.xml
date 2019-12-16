@@ -307,6 +307,15 @@
                     android:textColor="@color/blue"
                     android:textSize="14dp" />
 
+                <TextView
+                    android:id="@+id/txt_view_bill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-24dp"
+                    android:text="@string/view_bill"
+                    android:textColor="@color/blue"
+                    android:textSize="14dp" />
+
             </LinearLayout>
 
             <LinearLayout

@@ -42,6 +42,7 @@ import androidx.loader.content.CursorLoader;
 import com.google.gson.Gson;
 import com.skilex.skilexserviceperson.R;
 import com.skilex.skilexserviceperson.activity.LandingPageActivity;
+import com.skilex.skilexserviceperson.activity.fragmentmodule.completed.ViewBillActivity;
 import com.skilex.skilexserviceperson.bean.support.OngoingService;
 import com.skilex.skilexserviceperson.bean.support.StoreTimeSlot;
 import com.skilex.skilexserviceperson.customview.CircleImageView;
@@ -98,7 +99,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
     OngoingService ongoingService;
 
     private TextView txtServiceCategory, txtSubCategory, txtCustomerName, txtServiceDate, txtServiceTime, txtServiceProvider,
-            txtStartDateTime, txtAttachBill, btnAdditionalServices;
+            txtStartDateTime, txtViewBill, txtAttachBill, btnAdditionalServices;
     private EditText edtMaterialUsed;
     private Button btnUpdate, btnHold, btnSubmit, btnResume;
 
@@ -175,6 +176,8 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
         txtServiceProvider = findViewById(R.id.txt_service_provider);
         txtStartDateTime = findViewById(R.id.txt_start_date_time);
         edtMaterialUsed = findViewById(R.id.edt_material_used);
+        txtViewBill = findViewById(R.id.txt_view_bill);
+        txtViewBill.setOnClickListener(this);
         txtAttachBill = findViewById(R.id.txt_attach_bill);
         txtAttachBill.setOnClickListener(this);
         btnUpdate = findViewById(R.id.btn_update_services);
@@ -951,6 +954,10 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
                 Intent intent = new Intent(this, AdditionalServicesActivity.class);
                 intent.putExtra("serviceObj", ongoingService);
                 intent.putExtra("AddButtonFlag", "Ongoing");
+                startActivity(intent);
+            } else if (v == txtViewBill) {
+                Intent intent = new Intent(this, ViewBillActivity.class);
+                intent.putExtra("serv", ongoingService.getServiceOrderId());
                 startActivity(intent);
             }
 
