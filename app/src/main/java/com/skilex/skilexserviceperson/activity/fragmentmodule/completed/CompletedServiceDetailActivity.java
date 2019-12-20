@@ -88,8 +88,8 @@ public class CompletedServiceDetailActivity extends BaseActivity implements ISer
         txtCouponAmount = findViewById(R.id.coupon_applied_amount);
         txtAdvanceAmount = findViewById(R.id.advance_charge_amount);
         txtGrandTotal = findViewById(R.id.grand_total_amount);
-//        txtViewBill = findViewById(R.id.view_bills);
-//        txtViewBill.setOnClickListener(this);
+        txtViewBill = findViewById(R.id.view_bills);
+        txtViewBill.setOnClickListener(this);
         additional = findViewById(R.id.additional_layout);
         additional.setOnClickListener(this);
     }
@@ -114,11 +114,11 @@ public class CompletedServiceDetailActivity extends BaseActivity implements ISer
 
     @Override
     public void onClick(View v) {
-        /*if (v == txtViewBill) {
+        if (v == txtViewBill) {
             Intent i = new Intent(this, ViewBillActivity.class);
-            i.putExtra("serv", completedService);
+            i.putExtra("serv", completedService.getServiceOrderId());
             startActivity(i);
-        }*/
+        }
         if (v == additional) {
             Intent intent = new Intent(getApplicationContext(), AdditionalServicesListActivity.class);
             intent.putExtra("serviceObj", completedService);

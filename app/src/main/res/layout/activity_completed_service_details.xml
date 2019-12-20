@@ -334,6 +334,7 @@
                     android:layout_below="@id/start_end_layout"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="40dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <Button
@@ -344,6 +345,8 @@
                         android:fontFamily="@font/helvetica"
                         android:paddingStart="40dp"
                         android:paddingEnd="40dp"
+                        android:clickable="false"
+                        android:focusable="false"
                         android:text="@string/additional_services"
                         android:textAllCaps="false" />
 
