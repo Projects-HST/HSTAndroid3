@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">SkilEx</string>
     <string name="app_name_display">Expert</string>
+    <string name="tag_line">THE ULTIMATE SERVICE APP</string>
 
     <string name="empty" />
     <string name="error_occurred">Failed to connect to the server. Please try again.</string>
