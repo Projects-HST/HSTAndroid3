@@ -117,8 +117,8 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
         cusPhone = findViewById(R.id.txt_customer_number);
         cusAddress = findViewById(R.id.txt_address);
 
-        imgCall = findViewById(R.id.img_call_button);
-        imgCall.setOnClickListener(this);
+//        imgCall = findViewById(R.id.img_call_button);
+//        imgCall.setOnClickListener(this);
 
         btnNext = findViewById(R.id.btn_next);
         btnNext.setOnClickListener(this);
@@ -262,9 +262,7 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
     @Override
     public void onClick(View v) {
         if (CommonUtils.haveNetworkConnection(getApplicationContext())) {
-            if (v == imgCall) {
-
-            } else if (v == btnNext) {
+            if (v == btnNext) {
                 mRemoveLocationUpdatesButton.performClick();
                 Intent i = new Intent(getApplicationContext(), ServiceProcessActivity.class);
                 i.putExtra("serviceObj", ongoingService);

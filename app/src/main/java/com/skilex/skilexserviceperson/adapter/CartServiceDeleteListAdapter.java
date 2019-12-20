@@ -74,7 +74,7 @@ public class CartServiceDeleteListAdapter extends RecyclerView.Adapter<CartServi
         // each data item is just a string in this case
         public ImageView mImageView, Selecttick;
         public CheckBox checkTick;
-        public TextView mPrefTextView;
+        public TextView mPrefTextView, serviceRate;
         public RelativeLayout rlPref;
         public RelativeLayout slPref;
 
@@ -82,6 +82,7 @@ public class CartServiceDeleteListAdapter extends RecyclerView.Adapter<CartServi
             super(v);
             mImageView = (ImageView) v.findViewById(R.id.sub_category_image);
             mPrefTextView = (TextView) v.findViewById(R.id.sub_category_name);
+            serviceRate = (TextView) v.findViewById(R.id.sub_category_rate);
             Selecttick = (ImageView) v.findViewById(R.id.add_to_list);
             Selecttick.setVisibility(View.GONE);
 
@@ -126,7 +127,7 @@ public class CartServiceDeleteListAdapter extends RecyclerView.Adapter<CartServi
         //Log.d("CategoryAdapter","viewType is"+ viewType);
         //if (viewType == 1) {
         parentView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.category_list_item, parent, false);
+                .inflate(R.layout.additional_service_list_item, parent, false);
 
 //        }
 //        else {
@@ -147,6 +148,7 @@ public class CartServiceDeleteListAdapter extends RecyclerView.Adapter<CartServi
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.mPrefTextView.setText(categoryArrayList.get(position).getservice_name());
+        holder.serviceRate.setText(categoryArrayList.get(position).getRate_card());
 
 
         //imageLoader.displayImage(events.get(position).getEventLogo(), holder.imageView, AppController.getInstance().getLogoDisplayOptions());
