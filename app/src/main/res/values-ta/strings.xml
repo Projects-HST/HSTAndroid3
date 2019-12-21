@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ஸ்கிலெக்ஸ்</string>
-    <string name="app_name_display">சேவை நிபுணர்</string>
+    <string name="app_name">சேவை நிபுணர்</string>
+    <string name="app_name_display">ஸ்கிலெக்ஸ்</string>
     <string name="tag_line">THE ULTIMATE SERVICE APP</string>
 
     <string name="empty" />
