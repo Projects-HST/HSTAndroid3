@@ -98,6 +98,7 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
             mBound = true;
         }
 
+
         @Override
         public void onServiceDisconnected(ComponentName name) {
             mService = null;
