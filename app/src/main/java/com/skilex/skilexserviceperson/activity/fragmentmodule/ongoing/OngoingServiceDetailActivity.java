@@ -42,6 +42,7 @@ import androidx.loader.content.CursorLoader;
 import com.google.gson.Gson;
 import com.skilex.skilexserviceperson.R;
 import com.skilex.skilexserviceperson.activity.LandingPageActivity;
+import com.skilex.skilexserviceperson.activity.fragmentmodule.cancelled.CancelRequestedServiceActivity;
 import com.skilex.skilexserviceperson.activity.fragmentmodule.completed.ViewBillActivity;
 import com.skilex.skilexserviceperson.bean.support.OngoingService;
 import com.skilex.skilexserviceperson.bean.support.StoreTimeSlot;
@@ -139,6 +140,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
 
     private LinearLayout layoutResumeSection;
     private TextView txtResumeDateTime;
+    private Button cancel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -188,6 +190,10 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
         btnResume.setOnClickListener(this);
         btnSubmit = findViewById(R.id.btn_submit);
         btnSubmit.setOnClickListener(this);
+
+        cancel = findViewById(R.id.btnCancel);
+        cancel.setOnClickListener(this);
+
         btnAdditionalServices = findViewById(R.id.btn_additional_services);
         btnAdditionalServices.setOnClickListener(this);
 
@@ -922,6 +928,13 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
         return true;
     }
 
+    private void cancelOrder() {
+        Intent intent = new Intent(this, CancelRequestedServiceActivity.class);
+        intent.putExtra("serviceOrderId", ongoingService.getServiceOrderId());
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     public void onClick(View v) {
         if (CommonUtils.haveNetworkConnection(getApplicationContext())) {
@@ -942,6 +955,23 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
                         openImageIntent();
                     }
                 }
+            } else if (v == cancel) {
+                android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(OngoingServiceDetailActivity.this);
+                alertDialogBuilder.setTitle(R.string.cancel);
+                alertDialogBuilder.setMessage(R.string.cancel_service_noadvance_alert1);
+                alertDialogBuilder.setPositiveButton(R.string.alert_button_yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        cancelOrder();
+                    }
+                });
+                alertDialogBuilder.setNegativeButton(R.string.alert_button_no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alertDialogBuilder.show();
             } else if (v == btnUpdate) {
                 updateService();
             } else if (v == btnHold) {

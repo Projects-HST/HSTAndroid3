@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
@@ -40,6 +41,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.skilex.skilexserviceperson.R;
+import com.skilex.skilexserviceperson.activity.fragmentmodule.cancelled.CancelRequestedServiceActivity;
 import com.skilex.skilexserviceperson.bean.support.OngoingService;
 import com.skilex.skilexserviceperson.helper.AlertDialogHelper;
 import com.skilex.skilexserviceperson.helper.ProgressDialogHelper;
@@ -78,6 +80,7 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
     private Handler handler = new Handler();
     private Button mRequestLocationUpdatesButton;
     private Button mRemoveLocationUpdatesButton;
+    private Button cancel;
 
     private static final int REQUEST_PHONE_CALL = 1;
     Intent callIntent = new Intent(Intent.ACTION_CALL);
@@ -130,6 +133,9 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
 
         btnNext = findViewById(R.id.btn_next);
         btnNext.setOnClickListener(this);
+
+        cancel = findViewById(R.id.btnCancel);
+        cancel.setOnClickListener(this);
 
         nameLay = findViewById(R.id.name_layout);
         nameLay.setOnClickListener(this);
@@ -278,11 +284,35 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
                 finish();
             } else if (v == nameLay) {
                 callNumber();
+            } else if (v == cancel) {
+                android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(InitiatedServiceActivity.this);
+                alertDialogBuilder.setTitle(R.string.cancel);
+                alertDialogBuilder.setMessage(R.string.cancel_service_noadvance_alert1);
+                alertDialogBuilder.setPositiveButton(R.string.alert_button_yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        cancelOrder();
+                    }
+                });
+                alertDialogBuilder.setNegativeButton(R.string.alert_button_no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alertDialogBuilder.show();
             }
 
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection available");
         }
+    }
+
+    private void cancelOrder() {
+        Intent intent = new Intent(this, CancelRequestedServiceActivity.class);
+        intent.putExtra("serviceOrderId", ongoingService.getServiceOrderId());
+        startActivity(intent);
+        finish();
     }
 
     public void callNumber() {
