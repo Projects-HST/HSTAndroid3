@@ -157,4 +157,8 @@ public class SkilExConstants {
     public static final String PARAMS_DATETIME = "location_datetime";
     public static final String PARAMS_SERVICE_ORDER_ID = "service_order_id";
 
+    //APPLY COUPON URL
+    public static final String CHECK_VERSION = "version_check/";
+    public static String KEY_APP_VERSION = "version_code";
+
 }
