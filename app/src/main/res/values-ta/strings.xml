@@ -202,4 +202,10 @@
     <string name="remove_location_updates">Stop Tracking</string>
 
     <string name="location_updated">Location Updated: %1$s</string>
+
+    <!--Rating Page-->
+    <string name="rating_title">சேவையை மதிப்பிடுங்கள்</string>
+    <string name="rating_text">உங்கள் சேவையை மதிப்பிடுங்கள்</string>
+    <string name="rate">மதிப்பீடு</string>
+
 </resources>

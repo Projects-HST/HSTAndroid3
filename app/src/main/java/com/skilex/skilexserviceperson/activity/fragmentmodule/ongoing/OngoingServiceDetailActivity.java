@@ -43,6 +43,7 @@ import com.google.gson.Gson;
 import com.skilex.skilexserviceperson.R;
 import com.skilex.skilexserviceperson.activity.LandingPageActivity;
 import com.skilex.skilexserviceperson.activity.fragmentmodule.cancelled.CancelRequestedServiceActivity;
+import com.skilex.skilexserviceperson.activity.fragmentmodule.completed.RateServiceActivity;
 import com.skilex.skilexserviceperson.activity.fragmentmodule.completed.ViewBillActivity;
 import com.skilex.skilexserviceperson.bean.support.OngoingService;
 import com.skilex.skilexserviceperson.bean.support.StoreTimeSlot;
@@ -1067,7 +1068,7 @@ public class OngoingServiceDetailActivity extends BaseActivity implements IServi
 
                 } else if (res.equalsIgnoreCase("submit")) {
                     Toast.makeText(getApplicationContext(), "Service completed!", Toast.LENGTH_LONG).show();
-                    Intent i = new Intent(getApplicationContext(), LandingPageActivity.class);
+                    Intent i = new Intent(getApplicationContext(), RateServiceActivity.class);
                     startActivity(i);
                     finish();
                 } else if (res.equalsIgnoreCase("time")) {

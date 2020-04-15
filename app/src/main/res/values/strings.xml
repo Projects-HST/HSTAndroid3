@@ -201,4 +201,12 @@
     <string name="remove_location_updates">Stop Tracking</string>
 
     <string name="location_updated">Location Updated: %1$s</string>
+
+
+    <!--Rating Page-->
+    <string name="rating_title">Rate Service</string>
+    <string name="rating_text">Rate your service</string>
+    <string name="rate">Rate</string>
+
+
 </resources>

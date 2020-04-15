@@ -8,11 +8,11 @@ public class SkilExConstants {
 
     //Development Mode
     //delopment
-//    public static final String JOINT_URL = "development/";
+    public static final String JOINT_URL = "development/";
     //uat
 //    public static final String JOINT_URL = "uat/";
     //live
-    public static final String JOINT_URL = "";
+//    public static final String JOINT_URL = "";
 
     //BUILD URL
     public static final String BUILD_URL = BASE_URL + JOINT_URL + "apisperson/";
@@ -117,6 +117,8 @@ public class SkilExConstants {
     public static String SERVICE_OTP = "service_otp";
     public static String KEY_MATERIAL_NOTES = "material_notes";
     public static final String KEY_USER_TYPE = "user_type";
+    public static String FEEDBAC_ID = "feedback_id";
+    public static String FEEDBAC_tEXT = "feedback_text";
 
     //Cancel service
     public static final String API_CANCEL_REASON = "cancel_service_reasons/";
@@ -161,5 +163,13 @@ public class SkilExConstants {
     public static final String CHECK_VERSION = "version_check/";
     public static String KEY_APP_VERSION = "version_code";
     public static String KEY_APP_VERSION_VALUE = "1";
+
+
+    //APPLY COUPON URL
+    public static final String FEEDBACK_QUESTION = "expert_feedback_question/";
+
+    //APPLY COUPON URL
+    public static final String FEEDBACK_ANSWER = "expert_feedback_answer/";
+
 
 }

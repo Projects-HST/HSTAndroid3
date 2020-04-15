@@ -1,0 +1,245 @@
+package com.skilex.skilexserviceperson.activity.fragmentmodule.completed;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.RatingBar;
+import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.gson.Gson;
+import com.skilex.skilexserviceperson.R;
+import com.skilex.skilexserviceperson.activity.LandingPageActivity;
+import com.skilex.skilexserviceperson.adapter.FeebackListAdapter;
+import com.skilex.skilexserviceperson.bean.support.Feedback;
+import com.skilex.skilexserviceperson.bean.support.FeedbackList;
+import com.skilex.skilexserviceperson.helper.AlertDialogHelper;
+import com.skilex.skilexserviceperson.helper.ProgressDialogHelper;
+import com.skilex.skilexserviceperson.interfaces.DialogClickListener;
+import com.skilex.skilexserviceperson.servicehelpers.ServiceHelper;
+import com.skilex.skilexserviceperson.serviceinterfaces.IServiceListener;
+import com.skilex.skilexserviceperson.utils.PreferenceStorage;
+import com.skilex.skilexserviceperson.utils.SkilExConstants;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import static android.util.Log.d;
+
+public class RateServiceActivity extends AppCompatActivity implements DialogClickListener, IServiceListener, View.OnClickListener {
+
+    private static final String TAG = RateServiceActivity.class.getName();
+    private ProgressDialogHelper progressDialogHelper;
+    private ServiceHelper serviceHelper;
+    //    private Event event;
+    private RatingBar rtbComments;
+    private EditText edtComments;
+    private Button btnSubmit;
+    private String checkString;
+    private String reviewId = "";
+    private ImageView ivBack;
+    TextView skip;
+    private ArrayList<Feedback> feedbackArrayList = new ArrayList<>();
+    private FeebackListAdapter feebackListAdapter;
+    private ListView feedList;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_review);
+//        event = (Event) getIntent().getSerializableExtra("eventObj");
+        serviceHelper = new ServiceHelper(this);
+        serviceHelper.setServiceListener(this);
+        progressDialogHelper = new ProgressDialogHelper(this);
+        rtbComments = findViewById(R.id.ratingBar);
+        edtComments = findViewById(R.id.edtComments);
+        btnSubmit = findViewById(R.id.btnSubmit);
+        btnSubmit.setOnClickListener(this);
+        feedList = findViewById(R.id.listfedd);
+        skip = (TextView) findViewById(R.id.skip);
+        skip.setOnClickListener(this);
+//        findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
+        getQues();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == btnSubmit) {
+//            submitNewRecord();
+//            if (checkString.equalsIgnoreCase("new")) {
+//
+//            }
+            Intent intent = new Intent(this, LandingPageActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        if (v == skip) {
+            Intent intent = new Intent(this, LandingPageActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+    }
+
+//    private void submitNewRecord() {
+//
+//        float getrate = rtbComments.getRating();
+//        int getrate1 = rtbComments.getNumStars();
+//        checkString = "new";
+//
+//        JSONObject jsonObject = new JSONObject();
+//        try {
+//
+//            jsonObject.put(SkilExConstants.SERVICE_ORDER_ID, PreferenceStorage.getServiceOrderId(this));
+//            jsonObject.put(SkilExConstants.USER_MASTER_ID, PreferenceStorage.get(getApplicationContext()));
+//            jsonObject.put(SkilExConstants.KEY_RATINGS, "" + rtbComments.getRating());
+//            jsonObject.put(SkilExConstants.KEY_COMMENTS, edtComments.getText().toString());
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+//        String url = SkilExConstants.BUILD_URL + SkilExConstants.REVIEW;
+//        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+//    }
+
+
+    private void getQues() {
+
+        checkString = "QUES";
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+
+            jsonObject.put(SkilExConstants.USER_MASTER_ID, PreferenceStorage.getUserMasterId(getApplicationContext()));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+        String url = SkilExConstants.BUILD_URL + SkilExConstants.FEEDBACK_QUESTION;
+        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+    }
+
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
+
+    }
+
+    private boolean validateSignInResponse(JSONObject response) {
+        boolean signInSuccess = false;
+        if ((response != null)) {
+            try {
+                String status = response.getString("status");
+                String msg = response.getString(SkilExConstants.PARAM_MESSAGE);
+//                String msg_en = response.getString(SkilExConstants.PARAM_MESSAGE_ENG);
+//                String msg_ta = response.getString(SkilExConstants.PARAM_MESSAGE_TAMIL);
+                d(TAG, "status val" + status + "msg" + msg);
+
+                if ((status != null)) {
+                    if (((status.equalsIgnoreCase("activationError")) || (status.equalsIgnoreCase("alreadyRegistered")) ||
+                            (status.equalsIgnoreCase("notRegistered")) || (status.equalsIgnoreCase("error")))) {
+                        signInSuccess = false;
+                        d(TAG, "Show error dialog");
+
+//                        if (PreferenceStorage.getLang(this).equalsIgnoreCase("tamil")) {
+//                            AlertDialogHelper.showSimpleAlertDialog(this, msg);
+//                        } else {
+                            AlertDialogHelper.showSimpleAlertDialog(this, msg);
+//                        }
+
+                    } else {
+                        signInSuccess = true;
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return signInSuccess;
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        progressDialogHelper.hideProgressDialog();
+        if (validateSignInResponse(response)) {
+            try {
+                if (checkString.equalsIgnoreCase("QUES")) {
+                    Gson gson = new Gson();
+                    FeedbackList serviceHistoryList = gson.fromJson(response.toString(), FeedbackList.class);
+                    if (serviceHistoryList.getFeedbackArrayList() != null && serviceHistoryList.getFeedbackArrayList().size() > 0) {
+                        int totalCount = serviceHistoryList.getCount();
+//                    this.serviceHistoryArrayList.addAll(ongoingServiceList.getserviceArrayList());
+                        boolean isLoadingForFirstTime = false;
+                        updateListAdapter(serviceHistoryList.getFeedbackArrayList());
+                    } else {
+                        if (feedbackArrayList != null) {
+                            feedbackArrayList.clear();
+                            updateListAdapter(serviceHistoryList.getFeedbackArrayList());
+                        }
+                    }
+                } else {
+                    String status = response.getString("status");
+                    if (status.equalsIgnoreCase("Success")) {
+                        Intent intent = new Intent(this, LandingPageActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+//                if (status.equalsIgnoreCase("new")) {
+//                    checkString = "new";
+//                } else if (status.equalsIgnoreCase("success")) {
+//                    Intent intent = new Intent(getApplicationContext(), EventReviewActivity.class);
+//                    intent.putExtra("eventObj", event);
+//                    startActivity(intent);
+//                    finish();
+//                } else if (status.equalsIgnoreCase("exist")) {
+//                    checkString = "update";
+//                    JSONArray getEventReviews = response.getJSONArray("Reviewdetails");
+//                    updateEventReviews(getEventReviews);
+//                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    protected void updateListAdapter(ArrayList<Feedback> serviceHistoryArrayLists) {
+        feedbackArrayList.clear();
+        feedbackArrayList.addAll(serviceHistoryArrayLists);
+        if (feebackListAdapter == null) {
+            feebackListAdapter = new FeebackListAdapter(this, feedbackArrayList);
+            feedList.setAdapter(feebackListAdapter);
+        } else {
+            feebackListAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onError(String error) {
+        progressDialogHelper.hideProgressDialog();
+        AlertDialogHelper.showSimpleAlertDialog(this, error);
+    }
+}
