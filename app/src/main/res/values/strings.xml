@@ -67,11 +67,19 @@
 
     <!--Profile Settings Page-->
     <string name="about">About</string>
+    <string name="id_card">Digital ID Card</string>
     <string name="share">Share app</string>
     <string name="logout">Logout</string>
     <string name="update_service">Update Services</string>
     <string name="bank_details">Edit Bank Details</string>
     <string name="company_details">Company Details</string>
+
+    <!--Digital ID Card-->
+    <string name="exp_major">Expertise</string>
+    <string name="exp_join_date">Joining Date</string>
+    <string name="exp_ph_no">Phone Number</string>
+    <string name="exp_dob">Date of Birth</string>
+    <string name="skilex_address">SkilEx Multiservices Private Limited\n30/6, New Damu Nagar, Pappanaikenpalayam,\nCoimbatore-641037.</string>
 
     <!--Requested service list-->
     <string name="category">Category</string>

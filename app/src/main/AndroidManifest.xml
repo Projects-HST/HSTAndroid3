@@ -13,7 +13,7 @@
 
     <!--Maps Permission-->
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-<!--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
+    <!--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <!--End-->
@@ -42,11 +42,11 @@
     <application
         android:name=".app.AppController"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher"
-        android:hardwareAccelerated="true"
         android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBarLogin">
 
@@ -70,10 +70,10 @@
             android:label="@string/otp_action_bar"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateHidden" >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".activity.loginmodule.LoginActivity" />
+            android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.loginmodule.LoginActivity" />
         </activity>
 
 
@@ -124,7 +124,7 @@
             android:label="@string/additional_title"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden">
 
         </activity>
 
@@ -220,6 +220,13 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
 
+        <activity
+            android:name=".activity.DigitalIDCardActivity"
+            android:label="@string/id_card"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+
         <service
             android:name=".fcm.MyFirebaseMessagingService"
             android:stopWithTask="false">
@@ -253,8 +260,8 @@
 
 
         <!--        <service-->
-<!--            android:name=".servicehelpers.GoogleLocationService"-->
-<!--            android:enabled="true" />-->
+        <!--            android:name=".servicehelpers.GoogleLocationService"-->
+        <!--            android:enabled="true" />-->
 
     </application>
 

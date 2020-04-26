@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.skilex.skilexserviceperson.activity.DigitalIDCardActivity;
 import com.skilex.skilexserviceperson.activity.ProfileActivity;
 import com.skilex.skilexserviceperson.R;
 import com.skilex.skilexserviceperson.activity.AboutUsActivity;
@@ -44,7 +45,7 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
     private ProgressDialogHelper progressDialogHelper;
     private View rootView;
     private CircleImageView profileImage;
-    private LinearLayout profile, about, share, logout;
+    private LinearLayout profile, about, expertIDCard, share, logout;
     TextView userName, number, mail;
 
     public static ProfileFragment newInstance(int position) {
@@ -77,6 +78,8 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
         profile.setOnClickListener(this);
         about = rootView.findViewById(R.id.layout_about);
         about.setOnClickListener(this);
+        expertIDCard = rootView.findViewById(R.id.layout_id_card);
+        expertIDCard.setOnClickListener(this);
         share = rootView.findViewById(R.id.layout_share);
         share.setOnClickListener(this);
 
@@ -156,6 +159,10 @@ public class ProfileFragment extends Fragment implements IServiceListener, Dialo
         }
         if (v == about) {
             Intent homeIntent = new Intent(getActivity(), AboutUsActivity.class);
+            startActivity(homeIntent);
+        }
+        if(v== expertIDCard){
+            Intent homeIntent = new Intent(getActivity(), DigitalIDCardActivity.class);
             startActivity(homeIntent);
         }
         if (v == share) {

@@ -69,11 +69,19 @@
 
     <!--Profile Settings Page-->
     <string name="about">ஸ்கிலெக்ஸ் பற்றி அறிய</string>
+    <string name="id_card">டிஜிட்டல் அடையாள அட்டை</string>
     <string name="share">ஸ்கில்எக்ஸை பகிர </string>
     <string name="logout">வெளியேறு</string>
     <string name="update_service">புதிய சேவைகளை இணைக்க</string>
     <string name="bank_details">வங்கி விபரங்களை மாற்ற</string>
     <string name="company_details">நிறுவன விபரங்கள்</string>
+
+    <!--Digital ID Card-->
+    <string name="exp_major">நிபுணத்துவம்</string>
+    <string name="exp_join_date">வேலையில் சேர்ந்த நாள்</string>
+    <string name="exp_ph_no">தொலைபேசி எண்</string>
+    <string name="exp_dob">பிறந்த தேதி</string>
+    <string name="skilex_address">SkilEx Multiservices Private Limited\n30/6, New Damu Nagar, Pappanaikenpalayam,\nCoimbatore-641037.</string>
 
     <!--Requested service list-->
     <string name="category">பிரிவுகள்</string>
