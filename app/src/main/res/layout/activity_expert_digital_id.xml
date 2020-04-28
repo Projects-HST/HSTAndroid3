@@ -10,7 +10,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/button_round_color"
+        android:background="@drawable/border_smart_edge_blue"
         android:orientation="vertical">
 
         <LinearLayout
@@ -42,20 +42,19 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.80"
             android:background="@color/light_blue_1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:layout_weight="0.50"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.20">
+                    android:layout_weight="0.30">
 
                     <TextView
                         android:id="@+id/expert_name"
@@ -63,7 +62,7 @@
                         android:layout_height="wrap_content"
                         android:text="Expert Name"
                         android:textColor="@color/white"
-                        android:textSize="16dp"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -71,8 +70,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.20"
-                    android:orientation="horizontal">
+                    android:layout_weight="0.25"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -95,8 +95,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.20"
-                    android:orientation="horizontal">
+                    android:layout_weight="0.25"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -119,8 +120,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.20"
-                    android:orientation="horizontal">
+                    android:layout_weight="0.25"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -144,7 +146,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.20"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -176,7 +179,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_margin="20dp"
                     android:layout_weight="0.30"
                     android:background="@color/white"
                     android:gravity="center"
@@ -202,7 +204,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.70">
+                    android:layout_weight="0.70"
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/expert_job_id_no"
@@ -211,8 +214,8 @@
                         android:gravity="center"
                         android:text="@string/service_expert"
                         android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:textSize="18dp" />
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 

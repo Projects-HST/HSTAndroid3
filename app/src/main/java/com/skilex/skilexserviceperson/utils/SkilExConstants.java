@@ -30,6 +30,7 @@ public class SkilExConstants {
 
     //    Service Params
     public static String PARAM_MESSAGE = "msg";
+    public static String PARAM_MESSAGE_EN = "msg_en";
 
     //    Shared FCM ID
     public static final String KEY_FCM_ID = "fcm_id";
@@ -50,6 +51,9 @@ public class SkilExConstants {
 
     //NUMBER VERIFICATION URL FOR LOGIN
     public static final String MOBILE_VERIFICATION = "mobile_check/";
+
+    //Digital ID Card
+    public static final String DIGITAL_ID_CARD_API = "digital_id_card/";
 
     //Login
     public static String LOGIN = "login/";
