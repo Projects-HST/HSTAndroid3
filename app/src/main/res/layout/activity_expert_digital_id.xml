@@ -16,7 +16,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.15"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="-0.10"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -40,7 +42,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.80"
+            android:layout_weight="2.00"
             android:background="@color/light_blue_1"
             android:orientation="horizontal"
             android:padding="10dp">
@@ -86,7 +88,7 @@
                         android:id="@+id/expert_major"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="sample"
+                        android:text=""
                         android:textColor="@color/white"
                         android:textSize="16dp" />
 
@@ -111,7 +113,7 @@
                         android:id="@+id/expert_join_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="sample"
+                        android:text=""
                         android:textColor="@color/white"
                         android:textSize="16dp" />
 
@@ -136,7 +138,7 @@
                         android:id="@+id/expert_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="sample"
+                        android:text=""
                         android:textColor="@color/white"
                         android:textSize="16dp" />
 
@@ -161,7 +163,7 @@
                         android:id="@+id/expert_dob"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="sample"
+                        android:text=""
                         android:textColor="@color/white"
                         android:textSize="16dp" />
 
@@ -184,20 +186,29 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <com.skilex.skilexserviceperson.customview.CircleImageView
-                        android:id="@+id/user_profile_img"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_user_profile_image" />
-
-                    <TextView
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/service_expert"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
+                        android:layout_height="match_parent">
+
+                        <com.skilex.skilexserviceperson.customview.CircleImageView
+                            android:id="@+id/user_profile_img"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_user_profile_image" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="20dp"
+                            android:gravity="center"
+                            android:text="@string/service_expert"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -227,13 +238,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.15"
+            android:layout_marginTop="2dp"
+            android:layout_weight="-0.05"
             android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
                 android:text="@string/skilex_address"
                 android:textColor="@color/white"

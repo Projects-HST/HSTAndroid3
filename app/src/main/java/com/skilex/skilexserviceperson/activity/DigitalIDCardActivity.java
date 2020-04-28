@@ -73,6 +73,12 @@ public class DigitalIDCardActivity extends BaseActivity implements IServiceListe
         loadSmartCardInfo();
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
     private void loadSmartCardInfo() {
 
         JSONObject jsonObject = new JSONObject();
@@ -135,11 +141,14 @@ public class DigitalIDCardActivity extends BaseActivity implements IServiceListe
                 JSONObject smartCardData = response.getJSONObject("result");
 
                 String expertExpertiseIn = ""; //userData.getString("id");
-                String arrayOfExpertise[] = new String[2];
+
 
                 JSONObject getExpServiceData = response.getJSONObject("service_data");
 //                if (validateSignInResponse(getExpServiceData)) {
                 JSONArray expertExpertiseData = getExpServiceData.getJSONArray("service_list");
+
+                String arrayOfExpertise[] = new String[expertExpertiseData.length()];
+
                 if (expertExpertiseData != null && expertExpertiseData.length() > 0) {
                     for (int i = 0; i < expertExpertiseData.length(); i++) {
 
