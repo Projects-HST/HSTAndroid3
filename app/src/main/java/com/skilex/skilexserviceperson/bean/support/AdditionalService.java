@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class AdditionalService implements Serializable {
-    @SerializedName("service_id")
+    @SerializedName("id")
     @Expose
     private String service_id;
 

@@ -1,1 +1,20 @@
-[{"outputType":{"type":"APK"},"apkData":{"type":"MAIN","splits":[],"versionCode":24,"versionName":"1.039","enabled":true,"outputFile":"app-flavor-release.apk","fullName":"flavorRelease","baseName":"flavor-release","dirName":""},"path":"app-flavor-release.apk","properties":{}}]
+{
+  "version": 1,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.skilex.skilexserviceperson",
+  "variantName": "flavorRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "properties": [],
+      "versionCode": 24,
+      "versionName": "24",
+      "enabled": true,
+      "outputFile": "app-flavor-release.apk"
+    }
+  ]
+}

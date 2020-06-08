@@ -103,7 +103,7 @@ public class AllAdditionalServiceListAdapter  extends BaseAdapter implements ISe
 //            if(PreferenceStorage.ge(context).equalsIgnoreCase("tamil")) {
 //                holder.txtCatName.setText(services.get(position).getservice_ta_name());
 //            } else {
-                holder.txtCatName.setText(services.get(position).getservice_name());
+                holder.txtCatName.setText(services.get(position).getservice_name() + " - ₹" + services.get(position).getRate_card());
 //            }
             holder.imgCat = (ImageView) convertView.findViewById(R.id.sub_category_image);
             String url = services.get(position).getservice_pic_url();
@@ -151,7 +151,7 @@ public class AllAdditionalServiceListAdapter  extends BaseAdapter implements ISe
 //            if(PreferenceStorage.getLang(context).equalsIgnoreCase("tamil")) {
 //                holder.txtCatName.setText(services.get(position).getservice_ta_name());
 //            } else {
-                holder.txtCatName.setText(services.get(position).getservice_name());
+                holder.txtCatName.setText(services.get(position).getservice_name() + " - ₹" + services.get(position).getRate_card());
 //            }
             holder.imgCat = (ImageView) convertView.findViewById(R.id.sub_category_image);
             String url = services.get(position).getservice_pic_url();
