@@ -182,7 +182,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="0.30"
-                    android:background="@color/white"
+                    android:background="@color/light_blue_1"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -190,22 +190,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <com.skilex.skilexserviceperson.customview.CircleImageView
+                        <ImageView
                             android:id="@+id/user_profile_img"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_centerInParent="true"
-                            android:layout_gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_margin="5dp"
                             android:src="@drawable/ic_user_profile_image" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_below="@+id/user_profile_img"
                             android:layout_alignParentBottom="true"
                             android:layout_marginBottom="20dp"
                             android:gravity="center"
                             android:text="@string/service_expert"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="18dp" />
 
                     </RelativeLayout>
