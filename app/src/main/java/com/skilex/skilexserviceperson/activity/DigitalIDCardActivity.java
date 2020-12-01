@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -33,7 +34,8 @@ public class DigitalIDCardActivity extends BaseActivity implements IServiceListe
     private static final String TAG = ProfileActivity.class.getName();
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
-    private CircleImageView profilePic;
+//    private CircleImageView profilePic;
+    private ImageView profilePic;
     private TextView txtExpertName;
     private TextView txtExpertExpertise;
     private TextView txtExpertJoinedDate;
@@ -55,10 +57,12 @@ public class DigitalIDCardActivity extends BaseActivity implements IServiceListe
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
 
-        profilePic = (CircleImageView) findViewById(R.id.user_profile_img);
+        profilePic = (ImageView) findViewById(R.id.user_profile_img);
         String url = PreferenceStorage.getProfilePicture(this);
         if (((url != null) && !(url.isEmpty()))) {
-            Picasso.get().load(url).into(profilePic);
+            Picasso.get().load(url).noFade()
+                    .resize(200, 200)
+                    .centerCrop().into(profilePic);
         } else {
             profilePic.setImageResource(R.drawable.ic_profile);
         }
