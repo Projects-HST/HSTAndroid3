@@ -165,7 +165,7 @@ public class RateServiceActivity extends AppCompatActivity implements DialogClic
         if ((response != null)) {
             try {
                 String status = response.getString("status");
-                String msg = response.getString(SkilExConstants.PARAM_MESSAGE);
+                 String msg = response.getString(SkilExConstants.PARAM_MESSAGE);
 //                String msg_en = response.getString(SkilExConstants.PARAM_MESSAGE_ENG);
 //                String msg_ta = response.getString(SkilExConstants.PARAM_MESSAGE_TAMIL);
                 d(TAG, "status val" + status + "msg" + msg);
@@ -307,7 +307,23 @@ public class RateServiceActivity extends AppCompatActivity implements DialogClic
 
                 for (int a = 0; a < answerList.size(); a++) {
                     RadioButton yess = new RadioButton(this);
-                    yess.setId(R.id.radio_yes);
+                    switch (a) {
+                        case 0 :
+                            yess.setId(R.id.radio_one);
+                            break;
+                        case 1 :
+                            yess.setId(R.id.radio_two);
+                            break;
+                        case 2 :
+                            yess.setId(R.id.radio_three);
+                            break;
+                        case 3 :
+                            yess.setId(R.id.radio_four);
+                            break;
+                        case 4 :
+                            yess.setId(R.id.radio_five);
+                            break;
+                    }
                     yess.setText(answerList.get(a));
                     yess.setLayoutParams(params1);
                     final int finalC1 = a;
@@ -376,10 +392,7 @@ public class RateServiceActivity extends AppCompatActivity implements DialogClic
         boolean checked = ((RadioButton) view).isChecked();
 
         // Check which radio button was clicked
-        if (view.getId() == R.id.radio_yes) {
-            // Pirates are the best
-            sendFeedbac(pooos);
-        }
+        sendFeedbac(pooos);
     }
 
     private void sendFeedbac(int position) {
@@ -397,7 +410,8 @@ public class RateServiceActivity extends AppCompatActivity implements DialogClic
 
         try {
             jsonObject.put(SkilExConstants.USER_MASTER_ID, id);
-            jsonObject.put(SkilExConstants.SERVICE_ORDER_ID, idService);
+            jsonObject.put(SkilExConstants.SERVICE_ORDER_ID, "1");
+//            jsonObject.put(SkilExConstants.SERVICE_ORDER_ID, idService);
             jsonObject.put(SkilExConstants.FEEDBAC_ID, idCat);
             jsonObject.put(SkilExConstants.FEEDBAC_tEXT, feebackAns);
         } catch (JSONException e) {

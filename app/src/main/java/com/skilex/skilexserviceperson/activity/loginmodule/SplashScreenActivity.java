@@ -13,6 +13,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.skilex.skilexserviceperson.R;
 import com.skilex.skilexserviceperson.activity.LandingPageActivity;
+import com.skilex.skilexserviceperson.activity.fragmentmodule.completed.RateServiceActivity;
 import com.skilex.skilexserviceperson.languagesupport.BaseActivity;
 import com.skilex.skilexserviceperson.utils.PreferenceStorage;
 import com.skilex.skilexserviceperson.utils.SkilExValidator;
@@ -51,7 +52,7 @@ public class SplashScreenActivity extends BaseActivity {
                 if (PreferenceStorage.getUserMasterId(getApplicationContext()) != null && SkilExValidator.checkNullString(PreferenceStorage.getUserMasterId(getApplicationContext()))) {
                     if (PreferenceStorage.getActiveStatus(getApplicationContext()).equalsIgnoreCase("Live")) {
 
-                        Intent i = new Intent(SplashScreenActivity.this, LandingPageActivity.class);
+                        Intent i = new Intent(SplashScreenActivity.this, RateServiceActivity.class);
 //                homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(i);
                         finish();

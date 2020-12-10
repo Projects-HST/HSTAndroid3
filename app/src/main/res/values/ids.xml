@@ -5,8 +5,11 @@
     <item name="my_text_1" type="id" />
     <item name="my_text_2" type="id" />
     <item name="feedback_questionn" type="id" />
-    <item name="radio_yes" type="id" />
-    <item name="radio_no" type="id" />
+    <item name="radio_one" type="id" />
+    <item name="radio_two" type="id" />
+    <item name="radio_three" type="id" />
+    <item name="radio_four" type="id" />
+    <item name="radio_five" type="id" />
 
     <!--   Clas List   -->
     <item name="class_section_name" type="id" />
