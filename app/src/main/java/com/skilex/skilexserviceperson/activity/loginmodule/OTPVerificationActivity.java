@@ -269,6 +269,7 @@ public class OTPVerificationActivity extends BaseActivity implements View.OnClic
                 PreferenceStorage.saveAddress(this, address);
 
                 Intent i = new Intent(OTPVerificationActivity.this, LandingPageActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
             } catch (Exception ex) {
