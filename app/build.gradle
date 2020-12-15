@@ -13,14 +13,13 @@ android {
     }
 
     compileSdkVersion 29
-    buildToolsVersion "28.0.3"
 
     defaultConfig {
         applicationId "com.skilex.skilexserviceperson"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 25
-        versionName "1.040"
+        versionCode 26
+        versionName "1.041"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
