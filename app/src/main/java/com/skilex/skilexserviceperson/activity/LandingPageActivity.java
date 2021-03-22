@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.skilex.skilexserviceperson.R;
 import com.skilex.skilexserviceperson.fragment.HomeFragment;
@@ -44,7 +45,7 @@ public class LandingPageActivity extends BaseActivity implements IServiceListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+//        MapsInitializer.initialize(this);
         PreferenceStorage.saveActiveStatus(getApplicationContext(), "Live");
 
         serviceHelper = new ServiceHelper(this);

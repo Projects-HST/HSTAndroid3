@@ -1,9 +1,0 @@
-<changelist name="Uncommitted_changes_before_Update_at_10-12-2020_17_39_[Default_Changelist]" date="1607602154880" recycled="true" deleted="true">
-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10-12-2020_17_39_[Default_Changelist]/shelved.patch" />
-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 10-12-2020 17:39 [Default Changelist]" />
-  <binary>
-    <option name="BEFORE_PATH" value="app/flavor/release/app-flavor-release.apk" />
-    <option name="AFTER_PATH" value="app/flavor/release/app-flavor-release.apk" />
-    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10-12-2020_17_39_[Default_Changelist]/app-flavor-release.apk" />
-  </binary>
-</changelist>
