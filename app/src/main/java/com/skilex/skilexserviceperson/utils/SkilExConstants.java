@@ -166,7 +166,7 @@ public class SkilExConstants {
     //APPLY COUPON URL
     public static final String CHECK_VERSION = "version_check/";
     public static String KEY_APP_VERSION = "version_code";
-    public static String KEY_APP_VERSION_VALUE = "6";
+    public static String KEY_APP_VERSION_VALUE = "7";
 
 
     //APPLY COUPON URL
