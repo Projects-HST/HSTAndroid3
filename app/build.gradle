@@ -6,21 +6,20 @@ android {
         config {
             keyAlias 'skilex_service_person_alias'
             keyPassword 'skilex#123'
-            storeFile file('D:\\HappySanzTech\\AppWorkSpace\\SkilExServicePerson\\app\\skilex_service_person.jks')
+            storeFile file('G:\\HappySanzTech\\AppWorkSpace\\SkilExServicePerson\\app\\skilex_service_person.jks')
             storePassword 'skilex#123'
             flavorDimensions "default"
         }
     }
 
-    compileSdkVersion 29
-    buildToolsVersion "28.0.3"
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "com.skilex.skilexserviceperson"
         minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 25
-        versionName "1.040"
+        targetSdkVersion 30
+        versionCode 29
+        versionName "1.044"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -116,7 +115,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
 //    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.3.0-alpha03'
+    implementation 'com.google.android.material:material:1.3.0-alpha04'
 
     def multidex_version = "2.0.1"
     implementation "androidx.multidex:multidex:$multidex_version"
@@ -165,7 +164,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
 
 
-    testImplementation 'junit:junit:4.13'
+    testImplementation 'junit:junit:4.13.1'
 
     androidTestImplementation 'androidx.test:runner:1.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
