@@ -230,13 +230,15 @@ public class InitiatedServiceActivity extends BaseActivity implements OnMapReady
                     cusAddress.setText(getServiceData.getString("service_address"));
 
                     String string = getServiceData.getString("service_latlon");
-                    String[] parts = string.split(",");
-                    String part1 = parts[0]; // 004
-                    String part2 = parts[1]; // 034556
-                    Double lat = Double.valueOf(part1);
-                    Double longi = Double.valueOf(part2);
-                    LatLng latLng = new LatLng(lat, longi);
-                    showMarker(latLng);
+                    if (!string.isEmpty()) {
+                        String[] parts = string.split(",");
+                        String part1 = parts[0]; // 004
+                        String part2 = parts[1]; // 034556
+                        Double lat = Double.valueOf(part1);
+                        Double longi = Double.valueOf(part2);
+                        LatLng latLng = new LatLng(lat, longi);
+                        showMarker(latLng);
+                    }
 
                 } else if (res.equalsIgnoreCase("initiateService")) {
                     finish();
